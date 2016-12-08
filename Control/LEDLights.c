@@ -31,8 +31,14 @@ static void setupLedLogic(void)
 
 static void updateLedLogic(LedMessage m)
 {
+	int i;
 	interfaces[m.id].button = m.enable;
 	interfaces[m.id].slider = m.intensity;
+	for(i = 0; i < NumberOfInterfaces; i++) 
+	{
+		interfaces[i].update = 0;
+	}
+	interfaces[m.id].update = 1;
 }
 
 unsigned short createLedData()

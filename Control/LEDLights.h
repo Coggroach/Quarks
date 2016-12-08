@@ -7,7 +7,7 @@ void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue);
 
 typedef struct LedLogic
 {
-	unsigned char slider, button;	
+	unsigned char slider, button, update;	
 } LedLogic;
 
 #endif

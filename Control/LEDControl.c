@@ -98,11 +98,11 @@ static void setupLedScreen(void)
 	int buttonWidth = DisplayWidth / NumberOfButtons;
 	int buttonHeight = buttonWidth;
 	int i = 0, j = 0;		
-	int interfaceWidth = DisplayWidth / NumberOfInterfaces;
+	int interfaceWidth = DisplayWidth / NumberOfInterfacesInRow;
 	int interfaceHeight = interfaceWidth;
 	int interfaceWidth8th = interfaceWidth / 8;
 	int interfaceHeight8th = interfaceHeight / 8;
-	int numberOfRows = (NumberOfInterfaces % 2 == 0) ? NumberOfInterfaces / 2 : (NumberOfInterfaces + 1) / NumberOfInterfacesInRow;
+	int numberOfRows = (NumberOfInterfaces % 2 == 0) ? NumberOfInterfaces / NumberOfInterfacesInRow : (NumberOfInterfaces + 1) / NumberOfInterfacesInRow;
 	
 	for(i = 0; i < NumberOfButtons; i++)
 	{
