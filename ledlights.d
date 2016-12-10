@@ -12,7 +12,7 @@
 .\ledlights.o: ..\FreeRTOS\Source\include\task.h
 .\ledlights.o: ..\FreeRTOS\Source\include\list.h
 .\ledlights.o: ..\FreeRTOS\Source\include\queue.h
-.\ledlights.o: Control\LEDControl.h
+.\ledlights.o: Control\LCDControl.h
 .\ledlights.o: Control\LEDLights.h
 .\ledlights.o: Control\LCDGraphics.h
 .\ledlights.o: Control\Graphics.h

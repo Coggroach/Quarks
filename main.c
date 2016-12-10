@@ -7,7 +7,7 @@
 #include "console.h"
 #include "lcd_hw.h"
 #include "Control/Graphics.h"
-#include "Control/LEDControl.h"
+#include "Control/LCDControl.h"
 #include "Control/LEDLights.h"
 #include "Control/LCDGraphics.h"
 #include "Control/Messages.h"

@@ -1,5 +1,5 @@
-#ifndef LEDCONTROL_H
-#define LEDCONTROL_H
+#ifndef LCDCONTROL_H
+#define LCDCONTROL_H
 
 #include "queue.h"
 

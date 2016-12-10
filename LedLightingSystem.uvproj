@@ -624,16 +624,6 @@
               <FilePath>.\Control\Graphics.h</FilePath>
             </File>
             <File>
-              <FileName>LEDControl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Control\LEDControl.c</FilePath>
-            </File>
-            <File>
-              <FileName>LEDControl.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Control\LEDControl.h</FilePath>
-            </File>
-            <File>
               <FileName>Shapes.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Control\Shapes.c</FilePath>
@@ -662,6 +652,11 @@
               <FileName>LCDGraphics.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Control\LCDGraphics.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCDControl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Control\LCDControl.c</FilePath>
             </File>
           </Files>
         </Group>

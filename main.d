@@ -19,7 +19,7 @@
 .\main.o: Control/Shapes.h
 .\main.o: Control/Colour.h
 .\main.o: Control/Components.h
-.\main.o: Control/LEDControl.h
+.\main.o: Control/LCDControl.h
 .\main.o: ..\FreeRTOS\Source\include\queue.h
 .\main.o: Control/LEDLights.h
 .\main.o: Control/LCDGraphics.h

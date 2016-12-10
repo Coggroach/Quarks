@@ -1,5 +1,5 @@
 #include "FreeRTOS.h"
-#include "LEDControl.h"
+#include "LCDControl.h"
 #include "Graphics.h"
 #include "LCDGraphics.h"
 #include "task.h"
@@ -107,6 +107,10 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 		}		
 
 		/* +++ This point in the code can be interpreted as a screen button release event +++ */
+		if(button) {
+			handleButton(button);
+			drawButtonPointer(button);
+		}
 	}
 }
 

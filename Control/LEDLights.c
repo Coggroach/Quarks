@@ -2,7 +2,7 @@
 #include "task.h"
 #include "queue.h"
 #include "lpc24xx.h"
-#include "LEDControl.h"
+#include "LCDControl.h"
 #include "LEDLights.h"
 #include "LCDGraphics.h"
 #include "Messages.h"
@@ -18,6 +18,7 @@
 	
 /* The Consumer task. */
 static void vConsumerTask( void *pvParameters );
+static xQueueHandle xCmdQ;
 
 static LedLogic interfaces[NumberOfInterfaces];
 
@@ -29,6 +30,25 @@ static void setupLedLogic(void)
 		interfaces[j].slider = 0;		
 		interfaces[j].button = 0;
 	}				
+}
+
+static void setupPinConfig(void)	
+{
+	/* Enable and configure I2C0 */
+	PCONP    |=  (1 << 7);                /* Enable power for I2C0              */
+
+	/* Initialize pins for SDA (P0.27) and SCL (P0.28) functions                */
+	PINSEL1  &= ~0x03C00000;
+	PINSEL1  |=  0x01400000;
+
+	/* Clear I2C state machine                                                  */
+	I20CONCLR =  I2C_AA | I2C_SI | I2C_STA | I2C_I2EN;
+	
+	/* Setup I2C clock speed                                                    */
+	I20SCLL   =  0x80;
+	I20SCLH   =  0x80;
+	
+	I20CONSET =  I2C_I2EN;
 }
 
 static void updateLedLogic(LedMessage m)
@@ -58,11 +78,10 @@ void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue)
     /* We're going to pass a pointer to the new task's parameter block. We don't want the
        parameter block (in this case just a queue handle) that we point to to disappear
        during the lifetime of the task. Declaring the parameter block as static
-       achieves this. */
-  static xQueueHandle xCmdQ;
-    
+       achieves this. */    
   xCmdQ = xQueue;
 	
+	setupPinConfig();
 	setupLedLogic();
 
 	/* Spawn the console task . */
