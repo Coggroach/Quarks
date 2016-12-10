@@ -38,7 +38,7 @@ void pictureBegin(unsigned short x, unsigned short y, unsigned short width, unsi
 void pictureData(unsigned short *pPicture, unsigned short len);
 void pictureEnd(void);
 
-void drawButton(Button b, Colour c1, Colour c2);
-void drawSlider(Slider s, Colour c1, Colour c2);
+void drawButton(Button b, ColourPalette c, int m);
+void drawSlider(Slider s, ColourPalette c, int m);
 
 #endif

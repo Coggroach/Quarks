@@ -26,4 +26,9 @@ typedef unsigned short Colour;
 #define		TanahLot 		0x28E7
 #define		SpeedingOrange	0xF1E8
 
+typedef struct ColourPalette
+{
+	Colour one, two, three, four;	
+} ColourPalette;
+
 #endif

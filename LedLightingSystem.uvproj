@@ -653,6 +653,16 @@
               <FileType>5</FileType>
               <FilePath>.\Control\LEDLights.h</FilePath>
             </File>
+            <File>
+              <FileName>LCDGraphics.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Control\LCDGraphics.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCDGraphics.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Control\LCDGraphics.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

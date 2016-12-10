@@ -4,6 +4,8 @@
 #include "lpc24xx.h"
 #include "LEDControl.h"
 #include "LEDLights.h"
+#include "LCDGraphics.h"
+#include "Messages.h"
 
 #define I2C_AA      0x00000004
 #define I2C_SI      0x00000008

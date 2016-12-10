@@ -9,8 +9,10 @@
 #include "Control/Graphics.h"
 #include "Control/LEDControl.h"
 #include "Control/LEDLights.h"
+#include "Control/LCDGraphics.h"
+#include "Control/Messages.h"
 
-#define MaxLEDControlEvents 4
+#define MaxLEDControlEvents 8
 
 extern void vLCD_ISREntry( void );
 

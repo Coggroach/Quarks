@@ -22,3 +22,5 @@
 .\main.o: Control/LEDControl.h
 .\main.o: ..\FreeRTOS\Source\include\queue.h
 .\main.o: Control/LEDLights.h
+.\main.o: Control/LCDGraphics.h
+.\main.o: Control/Messages.h

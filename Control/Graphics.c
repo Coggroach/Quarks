@@ -718,35 +718,47 @@ void picture(unsigned short x, unsigned short y, unsigned short width, unsigned 
 ** Returned value:		None
 ** 
 ******************************************************************************/
-void drawButton(Button b, Colour c1, Colour c2)
+void drawButton(Button b, ColourPalette cc, int m)
 {
+	Colour c;
 	Rect rect = b.rect;
-	Colour color = b.value == 0 ? c1 : c2;
-	fillRectStruct(rect, color);
+	switch(b.state) {
+		case On:
+			c = cc.four;
+			break;
+		case Off:
+			c = m == 0 ? cc.one : cc.two;
+			break;
+		case OnAndPressed:
+		case Pressed:
+			c = cc.three;
+			break;
+	}	 
+	fillRectStruct(rect, c);
 }
 
-void drawSlider(Slider s, Colour c1, Colour c2)
+void drawSlider(Slider s, ColourPalette c, int m)
 {
 	Rect rect = s.rect;
 	int x = s.mode == 0 ? rect.x : rect.y;
 	int w = s.mode == 0 ? rect.width : rect.height;
 	
-	int r1_size = s.sPos - x;
+	int r1_size = s.sPos;
 	int r3_size = w - r1_size - s.sSize;
-	int r2 = x + s.sPos;
+	int r2 = x + s.sSize;
 	int r3 = r2 + s.sSize;
+	Colour off = (m == 0) ? c.one : c.two;
 	
-	if(s.mode == 0) 	
+	if(s.mode == Horizontal) 	
 	{
-		fillRect(rect.x, rect.y, r1_size, rect.height, c1);
-		fillRect(r2, rect.y, s.sSize, rect.height, c2);	
-		fillRect(r3, rect.y, r3_size, rect.height, c1);	
+		fillRect(rect.x, rect.y, r1_size, rect.height, off);
+		fillRect(r2, rect.y, s.sSize, rect.height, c.four);	
+		fillRect(r3, rect.y, r3_size, rect.height, off);	
 	}
 	else
 	{
-		fillRect(rect.x, rect.y, rect.width, r1_size, c1);
-		fillRect(rect.x, r2, rect.width, s.sSize, c2);	
-		fillRect(rect.x, r3, rect.width, r3_size, c1);
-	}
-	
+		fillRect(rect.x, rect.y, rect.width, r1_size, off);
+		fillRect(rect.x, r2, rect.width, s.sSize, c.four);	
+		fillRect(rect.x, r3, rect.width, r3_size, off);
+	}	
 }

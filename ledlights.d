@@ -13,7 +13,10 @@
 .\ledlights.o: ..\FreeRTOS\Source\include\list.h
 .\ledlights.o: ..\FreeRTOS\Source\include\queue.h
 .\ledlights.o: Control\LEDControl.h
-.\ledlights.o: Control\Components.h
+.\ledlights.o: Control\LEDLights.h
+.\ledlights.o: Control\LCDGraphics.h
+.\ledlights.o: Control\Graphics.h
 .\ledlights.o: Control\Shapes.h
 .\ledlights.o: Control\Colour.h
-.\ledlights.o: Control\LEDLights.h
+.\ledlights.o: Control\Components.h
+.\ledlights.o: Control\Messages.h

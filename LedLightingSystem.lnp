@@ -23,6 +23,7 @@
 ".\ledcontrol.o"
 ".\shapes.o"
 ".\ledlights.o"
+".\lcdgraphics.o"
 --strict --scatter ".\LedLightingSystem.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
