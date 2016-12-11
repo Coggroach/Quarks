@@ -11,7 +11,9 @@
 .\lcdgraphics.o: ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h
 .\lcdgraphics.o: ..\FreeRTOS\Source\include\mpu_wrappers.h
 .\lcdgraphics.o: Control\Graphics.h
+.\lcdgraphics.o: Control\Components.h
 .\lcdgraphics.o: Control\Shapes.h
 .\lcdgraphics.o: Control\Colour.h
-.\lcdgraphics.o: Control\Components.h
 .\lcdgraphics.o: ..\FreeRTOS\Source\include\queue.h
+.\lcdgraphics.o: Control\Messages.h
+.\lcdgraphics.o: Control\IDManager.h

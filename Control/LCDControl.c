@@ -1,7 +1,8 @@
 #include "FreeRTOS.h"
 #include "LCDControl.h"
-#include "Graphics.h"
 #include "LCDGraphics.h"
+#include "IDManager.h"
+#include "Messages.h"
 #include "task.h"
 #include "semphr.h"
 #include "lcd_hw.h"
@@ -33,6 +34,23 @@ void vStartLcd(unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue)
 	xTaskCreate( vLcdTask, "Lcd", lcdSTACK_SIZE, &xCmdQ, uxPriority, ( xTaskHandle * ) NULL );
 }
 
+static LedMessage getLedMessage(int id)
+{
+	LedMessage m;		
+
+	m.mode = getLedMode(id);
+	
+	if((m.mode & UpdateData) == UpdateData)
+		m.data = getLedData();
+	if((m.mode & UpdatePulse0) == UpdatePulse0)
+		m.data = getLedPulse0();
+	if((m.mode & UpdatePulse1) == UpdatePulse1)
+		m.data = getLedPulse1();
+	
+	xQueueSendToBack(xCmdQ, &m, portMAX_DELAY);
+	return m;
+}
+
 static portTASK_FUNCTION( vLcdTask, pvParameters )
 {
 	unsigned int pressure;
@@ -40,6 +58,8 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 	unsigned int yPos;
 	portTickType xLastWakeTime;
 	int ComponentTouchedId = ~(0x0);
+	ComponentType cType;
+	LedMessage m;
 	Slider* slider = 0;
 	Button* button = 0;
 
@@ -73,9 +93,6 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 		/* Disable TS interrupt vector (VIC) (vector 17) */
 		VICIntEnClr = 1 << 17;
 
-		/* +++ This point in the code can be interpreted as a screen button push event +++ */\
-		/* No Push event yet */
-
 		/* Measure next sleep interval from this point */
 		xLastWakeTime = xTaskGetTickCount();
 
@@ -83,34 +100,67 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 		/* Keep polling until pressure == 0 */
 		getTouch(&xPos, &yPos, &pressure);
 		
+		/* Get Touched Component */
 		ComponentTouchedId = isComponentTouched(xPos, yPos);
-		button = getButton(ComponentTouchedId);
-		slider = getSlider(ComponentTouchedId);
+		cType = GetComponent(ComponentTouchedId);
 		
+		switch(cType)
+		{
+			case PresetType:
+			case ButtonType:
+				button = getButton(ComponentTouchedId);
+				break;
+			case SliderType:
+				slider = getSlider(ComponentTouchedId);
+				break;
+			default:
+				break;
+		}				
+		
+		/* Down Event */
 		if(button) {
+			/* Handle Button */
 			handleButton(button);
+			
+			/* Handle if Preset */
+			if(cType == PresetType) {
+				//Call Preset Function
+				drawLedScreen();				
+				vTaskDelayUntil(&xLastWakeTime, 25);
+				continue;
+			}
+			
+			/* Draw Button */
 			drawButtonPointer(button);
+			
+			/* Handle and Draw Lights */
+			m = getLedMessage(ComponentTouchedId);
+			drawLights(m);
 		}
 
+		/* Drag Event */
 		while (pressure > 0)
 		{
 			/* Get current pressure */
 			getTouch(&xPos, &yPos, &pressure);
 			
+			/* Pressed Slider */
 			if(slider) {
+				/* Handle and Draw Slider */
 				handleSlider(slider, getPoint(xPos, yPos));
 				drawSliderPointer(slider);
+				
+				/* Handle and Draw Lights */
+				m = getLedMessage(ComponentTouchedId);
+				drawLights(m);
 			}
-
+			
 			/* Delay to give us a 25ms periodic TS pressure sample */
-			vTaskDelayUntil( &xLastWakeTime, 25 );
+			vTaskDelayUntil(&xLastWakeTime, 25);
 		}		
 
-		/* +++ This point in the code can be interpreted as a screen button release event +++ */
-		if(button) {
-			handleButton(button);
-			drawButtonPointer(button);
-		}
+		/* Up Event */
+
 	}
 }
 

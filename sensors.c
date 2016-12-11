@@ -48,7 +48,7 @@ void vStartSensors( unsigned portBASE_TYPE uxPriority )
 	I20CONSET =  I2C_I2EN;
 
 	/* Spawn the console task . */
-	xTaskCreate( vSensorsTask, ( signed char * ) "Sensors", sensorsSTACK_SIZE, NULL, uxPriority, ( xTaskHandle * ) NULL );
+	xTaskCreate( vSensorsTask, "Sensors", sensorsSTACK_SIZE, NULL, uxPriority, ( xTaskHandle * ) NULL );
 
 	printf("Sensor task started ...\r\n");
 }

@@ -1,8 +1,6 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "Shapes.h"
-#include "Colour.h"
 #include "Components.h"
 
 #define DisplayWidth 	240
@@ -40,5 +38,6 @@ void pictureEnd(void);
 
 void drawButton(Button b, ColourPalette c, int m);
 void drawSlider(Slider s, ColourPalette c, int m);
+void drawLight(Light l);
 
 #endif

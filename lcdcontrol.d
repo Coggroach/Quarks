@@ -11,11 +11,13 @@
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\mpu_wrappers.h
 .\lcdcontrol.o: Control\LCDControl.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\queue.h
+.\lcdcontrol.o: Control\LCDGraphics.h
 .\lcdcontrol.o: Control\Graphics.h
+.\lcdcontrol.o: Control\Components.h
 .\lcdcontrol.o: Control\Shapes.h
 .\lcdcontrol.o: Control\Colour.h
-.\lcdcontrol.o: Control\Components.h
-.\lcdcontrol.o: Control\LCDGraphics.h
+.\lcdcontrol.o: Control\Messages.h
+.\lcdcontrol.o: Control\IDManager.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\task.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\list.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\semphr.h

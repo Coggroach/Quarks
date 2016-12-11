@@ -729,9 +729,10 @@ void drawButton(Button b, ColourPalette cc, int m)
 		case Off:
 			c = m == 0 ? cc.one : cc.two;
 			break;
-		case OnAndPressed:
-		case Pressed:
+		case Dim:
 			c = cc.three;
+			break;
+		case Pressed:
 			break;
 	}	 
 	fillRectStruct(rect, c);
@@ -761,4 +762,19 @@ void drawSlider(Slider s, ColourPalette c, int m)
 		fillRect(rect.x, r2, rect.width, s.sSize, c.four);	
 		fillRect(rect.x, r3, rect.width, r3_size, off);
 	}	
+}
+
+Colour getBrightnessColour(unsigned char b)
+{
+	unsigned char t = b >> 3; //5 Bits
+	unsigned char r = 0;
+	
+	r |= (t << RPos) | (t << GPos) | (t << BPos);
+	return r;	
+}
+
+void drawLight(Light l)
+{
+	Colour c = getBrightnessColour(l.brightness);
+	fillRect(l.rect.x, l.rect.y, l.rect.width, l.rect.height, c);
 }

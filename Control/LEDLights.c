@@ -1,6 +1,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include <stdio.h>
 #include "lpc24xx.h"
 #include "LCDControl.h"
 #include "LEDLights.h"
@@ -20,17 +21,7 @@
 static void vConsumerTask( void *pvParameters );
 static xQueueHandle xCmdQ;
 
-static LedLogic interfaces[NumberOfInterfaces];
-
-static void setupLedLogic(void)
-{
-	int j;	
-	for(j = 0; j < NumberOfInterfaces; j++) 
-	{				
-		interfaces[j].slider = 0;		
-		interfaces[j].button = 0;
-	}				
-}
+static LedMessage lastMessage;
 
 static void setupPinConfig(void)	
 {
@@ -51,28 +42,6 @@ static void setupPinConfig(void)
 	I20CONSET =  I2C_I2EN;
 }
 
-static void updateLedLogic(LedMessage m)
-{
-	int i;
-	interfaces[m.id].button = m.enable;
-	interfaces[m.id].slider = m.intensity;
-	for(i = 0; i < NumberOfInterfaces; i++) 
-	{
-		interfaces[i].update = 0;
-	}
-	interfaces[m.id].update = 1;
-}
-
-unsigned short createLedData()
-{
-	unsigned short i, data = 0;	
-	for(i = 0; i < NumberOfInterfaces; i++) 
-	{
-		data |= (interfaces[i].button) << (2 * i);
-	}
-	return data;
-}
-
 void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue)
 {
     /* We're going to pass a pointer to the new task's parameter block. We don't want the
@@ -82,16 +51,13 @@ void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue)
   xCmdQ = xQueue;
 	
 	setupPinConfig();
-	setupLedLogic();
 
 	/* Spawn the console task . */
 	xTaskCreate( vConsumerTask, "Consumer", consumerTaskSTACK_SIZE, &xCmdQ, uxPriority, ( xTaskHandle * ) NULL );
 }
 
-unsigned char setLEDs()
+void setLEDs(unsigned char data, unsigned char pwm0, unsigned char pwm1)
 {
-	unsigned char ledData = createLedData();
-
 	/* Initialise */
 	I20CONCLR =  I2C_AA | I2C_SI | I2C_STA | I2C_STO;
 	
@@ -122,7 +88,7 @@ unsigned char setLEDs()
   while (!(I20CONSET & I2C_SI));
 	
 	/* PWM0 brightness level */
-  I20DAT    =  0; // PWM0 level
+  I20DAT    =  pwm0;
   I20CONCLR =  I2C_SI | I2C_STA;
  
   while (!(I20CONSET & I2C_SI));
@@ -134,7 +100,7 @@ unsigned char setLEDs()
   while (!(I20CONSET & I2C_SI));
    
   //PWM1 brightness level
-  I20DAT    =  0; //PWM1 level
+  I20DAT    =  pwm1;
   I20CONCLR =  I2C_SI | I2C_STA;
  
   while (!(I20CONSET & I2C_SI));
@@ -152,7 +118,7 @@ unsigned char setLEDs()
   while (!(I20CONSET & I2C_SI));
 	
 	/* Send Data word to read PCA9532 INPUT0 register */
-	I20DAT = ledData;
+	I20DAT = data;
 	I20CONCLR =  I2C_SI;
 
 	/* Wait for DATA with control word to be sent */
@@ -169,27 +135,41 @@ unsigned char setLEDs()
   I20CONCLR =  I2C_SI | I2C_AA;
  
   while (I20CONSET & I2C_STO);
-
-	return ledData ^ 0xf;
 }
 
 static portTASK_FUNCTION( vConsumerTask, pvParameters )	
 {
-	xQueueHandle xCmdQ;
-	LedMessage message;
+	portTickType xLastWakeTime;	
+	LedMessage m;
+	unsigned char d, p0, p1;
+	
+	/* Just to stop compiler warnings. */
+	( void ) pvParameters;
+	
+	printf("Starting sensor poll ...\r\n");
+	
+	/* initial xLastWakeTime for accurate polling interval */
+	xLastWakeTime = xTaskGetTickCount();
 	
 	/* pvParameters is actually a pointer to an xQueueHandle. Cast it and then dereference it to save it for later use. */
-  xCmdQ = * ( ( xQueueHandle * ) pvParameters );
+  //xCmdQ = * ( ( xQueueHandle * ) pvParameters );
 	
 	while(1)
 	{
 		/* Get command from Q */
-	  xQueueReceive(xCmdQ, &message, portMAX_DELAY);		
+	  xQueueReceive(xCmdQ, &m, portMAX_DELAY);			
 		
-		/* Update Local Data */
-		updateLedLogic(message);		
+		/* Check what needs Updating */
+		d = ((m.mode & UpdateData) == UpdateData) ? m.data : lastMessage.data;
+		p0 = ((m.mode & UpdatePulse0) == UpdatePulse0) ? m.pulse0 : lastMessage.pulse0;
+		p1 = ((m.mode & UpdatePulse1) == UpdatePulse1) ? m.pulse1 : lastMessage.pulse1;
 		
 		/* Update Lights */
-		setLEDs();
+		setLEDs(d, p0, p1);
+		
+		/* Update Last Message */
+		lastMessage = m;
+		
+		vTaskDelayUntil( &xLastWakeTime, 10);
 	}
 }

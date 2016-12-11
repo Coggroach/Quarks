@@ -658,6 +658,26 @@
               <FileType>1</FileType>
               <FilePath>.\Control\LCDControl.c</FilePath>
             </File>
+            <File>
+              <FileName>IDManager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Control\IDManager.c</FilePath>
+            </File>
+            <File>
+              <FileName>IDManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Control\IDManager.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCDControl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Control\LCDControl.h</FilePath>
+            </File>
+            <File>
+              <FileName>Messages.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Control\Messages.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

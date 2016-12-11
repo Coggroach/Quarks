@@ -20,11 +20,19 @@ typedef unsigned short Colour;
 #define   Yellow		0xFFE0      /* 255, 255, 0   */
 #define   White			0xFFFF      /* 255, 255, 255 */
 
-#define		MuddyWhite 	0xDB5A
-#define		Acoppola 		0x9294
-#define		TanahLess 	0x496B
-#define		TanahLot 		0x28E7
-#define		SpeedingOrange	0xF1E8
+#define		MuddyWhite 	0x6F5A
+#define		Acoppola 		0x4A94
+#define		TanahLess 	0x256B
+#define		TanahLot 		0x14E7
+#define		SpeedingOrange	0x79E8
+
+
+#define 	RPos	10
+#define		GPos 	5
+#define		BPos 	0
+#define		RMask	(0x1F << RPos)
+#define		GMask (0x1F << GPos)
+#define 	BMask (0x1F << BPos)
 
 typedef struct ColourPalette
 {

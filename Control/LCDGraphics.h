@@ -3,18 +3,21 @@
 
 #include "FreeRTOS.h"
 #include "Graphics.h"
-#include "Components.h"
 #include "queue.h"
+#include "Messages.h"
 
 #define NumberOfButtons 5
 #define NumberOfInterfaces 2
 #define NumberOfButtonsInInterface 2
+#define NumberOfLightsInInterface NumberOfButtonsInInterface
 #define NumberOfInterfacesInRow 2
+#define NumberOfComponents	(NumberOfButtons + NumberOfInterfaces * (NumberOfButtonsInInterface + NumberOfLightsInInterface))
 
 typedef struct LedInterface
 {
 	Slider slider;
-	Button buttons[NumberOfButtonsInInterface];	
+	Button buttons[NumberOfButtonsInInterface];
+	Light lights[NumberOfLightsInInterface];
 } LedInterface;
 
 typedef struct LedScreen
@@ -26,6 +29,9 @@ typedef struct LedScreen
 void drawLedScreen(void);
 void drawButtonPointer(Button* b);
 void drawSliderPointer(Slider* b);
+
+void drawLights(LedMessage m);
+
 void handleButton(Button *b);
 void handleSlider(Slider *s, Point p);
 void handleInterface(LedInterface *i, int id, xQueueHandle xQueue, Point p);
@@ -34,5 +40,14 @@ void setupLedScreen(void);
 Slider* getSlider(int id);
 Button* getButton(int id);
 Point getPoint(unsigned int x, unsigned int y);
+
+unsigned char isPresetButton(int id);
+unsigned char isSlider(int id);
+unsigned short getLedMode(int id);
+unsigned short getLedData(void);
+unsigned short getLightData(void);
+void setLightData(unsigned short d);
+unsigned short getLedPulse0(void);
+unsigned short getLedPulse1(void);
 
 #endif
