@@ -1,18 +1,10 @@
 #include "FreeRTOS.h"
 #include "task.h"
-#include "queue.h"
 #include <stdio.h>
 #include "lpc24xx.h"
-#include "LCDControl.h"
 #include "LEDLights.h"
-#include "LCDGraphics.h"
 #include "Messages.h"
-
-#define I2C_AA      0x00000004
-#define I2C_SI      0x00000008
-#define I2C_STO     0x00000010
-#define I2C_STA     0x00000020
-#define I2C_I2EN    0x00000040
+#include "I2C.h"
 
 /* FreeRTOS definitions */
 #define consumerTaskSTACK_SIZE			( ( unsigned portBASE_TYPE ) 256 )
@@ -22,35 +14,16 @@ static void vConsumerTask( void *pvParameters );
 static xQueueHandle xCmdQ;
 
 static LedMessage lastMessage;
+static xSemaphoreHandle xMutex;
 
-static void setupPinConfig(void)	
-{
-	/* Enable and configure I2C0 */
-	PCONP    |=  (1 << 7);                /* Enable power for I2C0              */
-
-	/* Initialize pins for SDA (P0.27) and SCL (P0.28) functions                */
-	PINSEL1  &= ~0x03C00000;
-	PINSEL1  |=  0x01400000;
-
-	/* Clear I2C state machine                                                  */
-	I20CONCLR =  I2C_AA | I2C_SI | I2C_STA | I2C_I2EN;
-	
-	/* Setup I2C clock speed                                                    */
-	I20SCLL   =  0x80;
-	I20SCLH   =  0x80;
-	
-	I20CONSET =  I2C_I2EN;
-}
-
-void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue)
+void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xSemaphoreHandle xSemphr)
 {
     /* We're going to pass a pointer to the new task's parameter block. We don't want the
        parameter block (in this case just a queue handle) that we point to to disappear
        during the lifetime of the task. Declaring the parameter block as static
        achieves this. */    
   xCmdQ = xQueue;
-	
-	setupPinConfig();
+	xMutex = xSemphr;
 
 	/* Spawn the console task . */
 	xTaskCreate( vConsumerTask, "Consumer", consumerTaskSTACK_SIZE, &xCmdQ, uxPriority, ( xTaskHandle * ) NULL );
@@ -146,7 +119,7 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 	
-	printf("Starting sensor poll ...\r\n");
+	printf("Starting LEDs task ...\r\n");
 	
 	/* initial xLastWakeTime for accurate polling interval */
 	xLastWakeTime = xTaskGetTickCount();
@@ -160,15 +133,36 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 	  xQueueReceive(xCmdQ, &m, portMAX_DELAY);			
 		
 		/* Check what needs Updating */
-		d = ((m.mode & UpdateData) == UpdateData) ? m.data : lastMessage.data;
+		if((m.mode & UpdateData) == UpdateData) 		
+			d = m.data;
+		else if((m.mode & UpdateData0) == UpdateData0)
+			d = (m.data & UpdateData0) | ((lastMessage.data & ~(UpdateData0)) & UpdateData);
+		else if((m.mode & UpdateData1) == UpdateData1)
+			d = (m.data & UpdateData1) | ((lastMessage.data & ~(UpdateData1)) & UpdateData);
+		else if((m.mode & UpdateData2) == UpdateData2)			
+			d = (m.data & UpdateData2) | ((lastMessage.data & ~(UpdateData2)) & UpdateData);
+		else if((m.mode & UpdateData3) == UpdateData3)
+			d = (m.data & UpdateData3) | ((lastMessage.data & ~(UpdateData3)) & UpdateData);
+		else
+			d = lastMessage.data;
+					
 		p0 = ((m.mode & UpdatePulse0) == UpdatePulse0) ? m.pulse0 : lastMessage.pulse0;
 		p1 = ((m.mode & UpdatePulse1) == UpdatePulse1) ? m.pulse1 : lastMessage.pulse1;
+		
+		
+		/* Block on a mutex */
+		xSemaphoreTake(xMutex, portMAX_DELAY);
 		
 		/* Update Lights */
 		setLEDs(d, p0, p1);
 		
+		/* Give mutex back */
+		xSemaphoreGive(xMutex);
+		
 		/* Update Last Message */
-		lastMessage = m;
+		lastMessage.data = d;
+		lastMessage.pulse0 = p0;
+		lastMessage.pulse1 = p1;
 		
 		vTaskDelayUntil( &xLastWakeTime, 10);
 	}

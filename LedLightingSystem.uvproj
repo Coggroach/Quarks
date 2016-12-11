@@ -678,6 +678,21 @@
               <FileType>5</FileType>
               <FilePath>.\Control\Messages.h</FilePath>
             </File>
+            <File>
+              <FileName>BoardButtons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Control\BoardButtons.c</FilePath>
+            </File>
+            <File>
+              <FileName>BoardButtons.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Control\BoardButtons.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Control\I2C.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

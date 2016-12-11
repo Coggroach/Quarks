@@ -22,5 +22,8 @@
 .\main.o: Control/LCDControl.h
 .\main.o: ..\FreeRTOS\Source\include\queue.h
 .\main.o: Control/LEDLights.h
+.\main.o: ..\FreeRTOS\Source\include\semphr.h
 .\main.o: Control/LCDGraphics.h
 .\main.o: Control/Messages.h
+.\main.o: Control/BoardButtons.h
+.\main.o: Control/I2C.h

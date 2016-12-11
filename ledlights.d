@@ -11,13 +11,9 @@
 .\ledlights.o: ..\FreeRTOS\Source\include\mpu_wrappers.h
 .\ledlights.o: ..\FreeRTOS\Source\include\task.h
 .\ledlights.o: ..\FreeRTOS\Source\include\list.h
-.\ledlights.o: ..\FreeRTOS\Source\include\queue.h
 .\ledlights.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\ledlights.o: Control\LCDControl.h
 .\ledlights.o: Control\LEDLights.h
-.\ledlights.o: Control\LCDGraphics.h
-.\ledlights.o: Control\Graphics.h
-.\ledlights.o: Control\Components.h
-.\ledlights.o: Control\Shapes.h
-.\ledlights.o: Control\Colour.h
+.\ledlights.o: ..\FreeRTOS\Source\include\queue.h
+.\ledlights.o: ..\FreeRTOS\Source\include\semphr.h
 .\ledlights.o: Control\Messages.h
+.\ledlights.o: Control\I2C.h

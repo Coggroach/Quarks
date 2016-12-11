@@ -11,6 +11,8 @@
 #include "Control/LEDLights.h"
 #include "Control/LCDGraphics.h"
 #include "Control/Messages.h"
+#include "Control/BoardButtons.h"
+#include "Control/I2C.h"
 
 #define MaxLEDControlEvents 8
 
@@ -26,20 +28,23 @@ static void prvSetupHardware( void );
 int main (void)
 {
 	xQueueHandle xQueue;
+	xSemaphoreHandle xMutex;
 	
 	/* Setup the hardware for use with the Keil demo board. */
 	prvSetupHardware();
 	
 	/* Create a FreeRTOS Queue to send commands from the Producer task to the consumer task. */
 	xQueue = xQueueCreate(MaxLEDControlEvents, sizeof(LedMessage));
+	
+	xMutex = xSemaphoreCreateMutex();
 		
   /* Start the console task */
 	vStartConsole(1, 19200);
 
-	/* Start the lcd task */
-	vStartLcd(1, xQueue);
-	
-	vStartLightsTask(2, xQueue);
+	/* Start Tasks */
+	vStartLcd(3, xQueue);	
+	vStartLightsTask(2, xQueue, xMutex);
+	vStartButtonsTask(1, xQueue, xMutex);
 
 	/* Start the FreeRTOS Scheduler ... after this we're pre-emptive multitasking ...
 
@@ -77,5 +82,21 @@ static void prvSetupHardware( void )
 	VICVectPriority17 = 15;			/* Set priority 15 (lowest) for vector 17 */
 	VICVectAddr17 = (unsigned long)vLCD_ISREntry;
 	/* Set handler vector */
+	
+	/* I2C Hardware Setup */
+	/* Enable and configure I2C0 */
+	PCONP    |=  (1 << 7);                /* Enable power for I2C0              */
 
+	/* Initialize pins for SDA (P0.27) and SCL (P0.28) functions                */
+	PINSEL1  &= ~0x03C00000;
+	PINSEL1  |=  0x01400000;
+
+	/* Clear I2C state machine                                                  */
+	I20CONCLR =  I2C_AA | I2C_SI | I2C_STA | I2C_I2EN;
+	
+	/* Setup I2C clock speed                                                    */
+	I20SCLL   =  0x80;
+	I20SCLH   =  0x80;
+	
+	I20CONSET =  I2C_I2EN;
 }
