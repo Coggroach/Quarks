@@ -1,9 +1,9 @@
 .\lcdcontrol.o: Control\LCDControl.c
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\lcdcontrol.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\lcdcontrol.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\lcdcontrol.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\lcdcontrol.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\lcdcontrol.o: .\FreeRTOSConfig.h
-.\lcdcontrol.o: E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips\lpc24xx.h
+.\lcdcontrol.o: C:\Keil\ARM\Inc\Philips\lpc24xx.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\projdefs.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\portable.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\deprecated_definitions.h
@@ -22,5 +22,5 @@
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\list.h
 .\lcdcontrol.o: ..\FreeRTOS\Source\include\semphr.h
 .\lcdcontrol.o: .\LCD\lcd_hw.h
-.\lcdcontrol.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\lcdcontrol.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\lcdcontrol.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\lcdcontrol.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h

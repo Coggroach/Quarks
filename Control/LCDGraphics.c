@@ -14,9 +14,10 @@ void drawLedScreen(void)
 	
 	for(j = 0; j < NumberOfInterfaces; j++) 
 	{		
-		drawSlider(screen.interfaces[j].slider, palette, (j % 2));
-		drawButton(screen.interfaces[j].buttons[0], palette, 0);
-		drawButton(screen.interfaces[j].buttons[1], palette, 1);
+		i = j % 2;
+		drawSlider(screen.interfaces[j].slider, palette, i);
+		drawButton(screen.interfaces[j].buttons[0], palette, i);
+		drawButton(screen.interfaces[j].buttons[1], palette, i);
 		drawLight(screen.interfaces[j].lights[0]);
 		drawLight(screen.interfaces[j].lights[1]);
 	}
@@ -54,18 +55,37 @@ void drawLights(LedMessage m)
 	
 	if((m.mode & UpdateData) == UpdateData)
 	{
-		l = getLightData();
-		d = l ^ m.data;
+		//l = getLightData();
+		d = m.data; //l ^ m.data;
 		
-		if((d & 0x3) > 0)
+		if((m.mode & UpdateData0) == UpdateData0)
+		{
+			l = d & 0x3;
+			l = (l == 0x3) ? Dim : l;
+			screen.interfaces[0].lights[0].state = l;
 			drawLight(screen.interfaces[0].lights[0]);
-		if(((d >> 2) & 0x3) > 0)
+		}			
+		if((m.mode & UpdateData1) == UpdateData1)
+		{
+			l = (d >> 2) & 0x3;
+			l = (l == 0x3) ? Dim : l;
+			screen.interfaces[0].lights[1].state = l;
 			drawLight(screen.interfaces[0].lights[1]);
-		if(((d >> 4) & 0x3) > 0)
+		}
+		if((m.mode & UpdateData2) == UpdateData2)
+		{
+			l = (d >> 4) & 0x3;
+			l = (l == 0x3) ? Dim : l;
+			screen.interfaces[1].lights[0].state = l;
 			drawLight(screen.interfaces[1].lights[0]);
-		if(((d >> 6) & 0x3) > 0)
+		}
+		if((m.mode & UpdateData3) == UpdateData3)
+		{
+			l = (d >> 6) & 0x3;
+			l = (l == 0x3) ? Dim : l;
+			screen.interfaces[1].lights[1].state = l;
 			drawLight(screen.interfaces[1].lights[1]);		
-		setLightData(m.data);
+		}
 	}
 }
 
@@ -165,18 +185,18 @@ unsigned short getLedData(void)
 	return data;
 }
 
-unsigned short getLedPulse0(void)
+unsigned int getLedPulse0(void)
 {
 	Slider s = screen.interfaces[0].slider;
 	int i = s.mode == Horizontal ? s.rect.width : s.rect.height;
-	return 256 * s.sPos	/ i;
+	return s.sPos; //256 * s.sPos	/ i;
 }
 
-unsigned short getLedPulse1(void)
+unsigned int getLedPulse1(void)
 {
 	Slider s = screen.interfaces[1].slider;
 	int i = s.mode == Horizontal ? s.rect.width : s.rect.height;
-	return 256 * s.sPos	/ i;
+	return s.sPos; //256 * s.sPos	/ i;
 }
 
 /* Data Accessors */
@@ -220,6 +240,14 @@ Point getPoint(unsigned int x, unsigned int y)
 
 /* Event Handling Methods */
 
+void handlePreset(Button* b)
+{
+	if(b->state == Off)
+		b->state = On;
+	else if(b->state == On)
+		b->state = Off;
+}
+
 void handleButton(Button* b)
 {
 	if(b->state == Off)
@@ -238,17 +266,18 @@ void handleButton(Button* b)
 		b->state &= ~(Pressed); */
 }
 
-void handleSlider(Slider *s, Point p) 
+void handleSlider(Slider *s, Point point) 
 {
-	int x = s->mode == Horizontal ? p.x : p.y;
-	int w = s->mode == Horizontal ? s->rect.x + s->rect.width : s->rect.y + s->rect.height;	
-	int result = x - s->sSize/2;
+	int p = s->mode == Horizontal ? point.x : point.y;
+	int x = s->mode == Horizontal ? s->rect.x : s->rect.y;
+	int w = s->mode == Horizontal ? s->rect.x + s->rect.width : s->rect.y + s->rect.height;			
+	int r = p - x;
 	
-	if(result < 0)
-		result = 0;
-	if(result + s->sSize >= w)
-		result = w - s->sSize;
-	s->sPos = result;
+	if(r < 0)
+		r = 0;
+	if(r >= w)
+		r = w;
+	s->sPos = r;
 }
 
 int isComponentTouched(unsigned int x, unsigned int y)
@@ -284,10 +313,10 @@ void setupLedScreen(void)
 	int interfaceSize9th = DisplayWidth / 9;		
 	int xPos, yPos;
 	
-	palette.one = Acoppola;
-	palette.two = TanahLess;
-	palette.three = TanahLot;
-	palette.four = SpeedingOrange;
+	palette.one = Blue;
+	palette.two = Green;
+	palette.three = Cyan;
+	palette.four = Black;
 	
 	xPos = 0 + interfaceSize9th;
 	yPos = buttonSize;
@@ -316,7 +345,6 @@ void setupLedScreen(void)
 		
 		screen.interfaces[i].slider.mode = Vertical;		
 		screen.interfaces[i].slider.sPos = 0;
-		screen.interfaces[i].slider.sSize = 1 * interfaceSize9th;
 		
 		screen.interfaces[i].lights[0].rect.x = xPos + (2 + 4*i) * interfaceSize9th;
 		screen.interfaces[i].lights[0].rect.y = yPos + 3 * interfaceSize9th;

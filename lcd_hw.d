@@ -1,11 +1,11 @@
 .\lcd_hw.o: LCD\lcd_hw.c
-.\lcd_hw.o: E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips\LPC24xx.H
+.\lcd_hw.o: C:\Keil\ARM\Inc\Philips\LPC24xx.H
 .\lcd_hw.o: LCD\lcd_hw.h
 .\lcd_hw.o: .\LCD\general.h
 .\lcd_hw.o: .\LCD\config.h
 .\lcd_hw.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\lcd_hw.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\lcd_hw.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\lcd_hw.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\lcd_hw.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\lcd_hw.o: .\FreeRTOSConfig.h
 .\lcd_hw.o: ..\FreeRTOS\Source\include\projdefs.h
 .\lcd_hw.o: ..\FreeRTOS\Source\include\portable.h

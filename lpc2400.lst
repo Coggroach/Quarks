@@ -2511,12 +2511,10 @@ e)
               00000008 
               00400000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\l
-pc2400.d -o.\lpc2400.o -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I"E:\Pro
-gram Files (x86)\Keil_v5\ARM\RV31\INC" -I"E:\Program Files (x86)\Keil_v5\ARM\CM
-SIS\Include" -I"E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips" --predefine="__
-EVAL SETA 1" --predefine="__UVISION_VERSION SETA 521" --list=.\lpc2400.lst LPC2
-400.s
+Command Line: --debug --xref --apcs=interwork --depend=.\lpc2400.d -o.\lpc2400.
+o -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -IC:\Keil\ARM\RV31\INC -IC:\Ke
+il\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Philips --predefine="__EVAL SETA 1" --li
+st=.\lpc2400.lst LPC2400.s
 
 
 
@@ -4747,4 +4745,4 @@ Symbol: vPreemptiveTick
       At line 1076 in file LPC2400.s
 Comment: vPreemptiveTick used once
 4 symbols
-591 symbols in table
+590 symbols in table

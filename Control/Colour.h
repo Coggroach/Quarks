@@ -19,13 +19,13 @@ typedef unsigned short Colour;
 #define   Magenta		0xF81F      /* 255,   0, 255 */
 #define   Yellow		0xFFE0      /* 255, 255, 0   */
 #define   White			0xFFFF      /* 255, 255, 255 */
+#define		Orange		0xFCE0
 
 #define		MuddyWhite 	0x6F5A
 #define		Acoppola 		0x4A94
 #define		TanahLess 	0x256B
 #define		TanahLot 		0x14E7
 #define		SpeedingOrange	0x79E8
-
 
 #define 	RPos	10
 #define		GPos 	5

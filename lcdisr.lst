@@ -355,12 +355,10 @@ ARM Macro Assembler    Page 6
               00000000 
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\l
-cdisr.d -o.\lcdisr.o -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I"E:\Progr
-am Files (x86)\Keil_v5\ARM\RV31\INC" -I"E:\Program Files (x86)\Keil_v5\ARM\CMSI
-S\Include" -I"E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips" --predefine="__EV
-AL SETA 1" --predefine="__UVISION_VERSION SETA 521" --list=.\lcdisr.lst lcdISR.
-s
+Command Line: --debug --xref --apcs=interwork --depend=.\lcdisr.d -o.\lcdisr.o 
+-I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -IC:\Keil\ARM\RV31\INC -IC:\Keil
+\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Philips --predefine="__EVAL SETA 1" --list
+=.\lcdisr.lst lcdISR.s
 
 
 
@@ -397,9 +395,9 @@ Symbol: pxCurrentTCB
       At line 58 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro
 .inc
    Uses
-      At line 114 in macro Á“TEXT
+      At line 114 in macro  TEXT
       at line 23 in file lcdISR.s
-      At line 65 in macro portRESTORE_CONTEXT
+      At line 65 in macro ˇˇåê
       at line 33 in file lcdISR.s
 
 ulCriticalNesting 00000000
@@ -409,9 +407,9 @@ Symbol: ulCriticalNesting
       At line 57 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro
 .inc
    Uses
-      At line 110 in macro Á“TEXT
+      At line 110 in macro  TEXT
       at line 23 in file lcdISR.s
-      At line 69 in macro portRESTORE_CONTEXT
+      At line 69 in macro ˇˇåê
       at line 33 in file lcdISR.s
 
 vLCD_ISRHandler 00000000
@@ -423,4 +421,4 @@ Symbol: vLCD_ISRHandler
       At line 26 in file lcdISR.s
 Comment: vLCD_ISRHandler used once
 3 symbols
-339 symbols in table
+338 symbols in table

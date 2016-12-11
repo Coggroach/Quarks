@@ -43,11 +43,12 @@ static LedMessage getLedMessage(int id)
 	if((m.mode & UpdateData) == UpdateData)
 		m.data = getLedData();
 	if((m.mode & UpdatePulse0) == UpdatePulse0)
-		m.data = getLedPulse0();
+		m.pulse0 = getLedPulse0();
 	if((m.mode & UpdatePulse1) == UpdatePulse1)
-		m.data = getLedPulse1();
+		m.pulse1 = getLedPulse1();
 	
 	xQueueSendToBack(xCmdQ, &m, portMAX_DELAY);
+	printf("Sent Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);
 	return m;
 }
 
@@ -66,7 +67,8 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 
-	printf("LEDControl Running\r\n");
+	printf("LEDControl task started ...\r\n");
+	printf("===========================\r\n");
 
 	/* Initialise LCD display */
 	/* NOTE: We needed to delay calling lcd_init() until here because it uses
@@ -119,16 +121,21 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 		
 		/* Down Event */
 		if(button) {
-			/* Handle Button */
-			handleButton(button);
+			if(!doesRectContainPoint(button->rect, getPoint(xPos, yPos)))
+					continue;
 			
 			/* Handle if Preset */
 			if(cType == PresetType) {
-				//Call Preset Function
-				drawLedScreen();				
-				vTaskDelayUntil(&xLastWakeTime, 25);
+				/* Handle Preset */
+				handlePreset(button);
+				drawButtonPointer(button);
+				//drawLedScreen();				
+				//vTaskDelayUntil(&xLastWakeTime, 25);
 				continue;
 			}
+			
+			/* Handle Button */
+			handleButton(button);
 			
 			/* Draw Button */
 			drawButtonPointer(button);
@@ -146,9 +153,14 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 			
 			/* Pressed Slider */
 			if(slider) {
+				if(!doesRectContainPoint(slider->rect, getPoint(xPos, yPos)))
+					continue;
+				
 				/* Handle and Draw Slider */
 				handleSlider(slider, getPoint(xPos, yPos));
 				drawSliderPointer(slider);
+				
+				//printf("Slider: %i, %i\r\n", slider->id, slider->sPos);
 				
 				/* Handle and Draw Lights */
 				m = getLedMessage(ComponentTouchedId);
@@ -160,7 +172,7 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 		}		
 
 		/* Up Event */
-
+		printf("===========================\r\n");
 	}
 }
 

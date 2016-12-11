@@ -36,7 +36,7 @@ int main (void)
 	/* Create a FreeRTOS Queue to send commands from the Producer task to the consumer task. */
 	xQueue = xQueueCreate(MaxLEDControlEvents, sizeof(LedMessage));
 	
-	xMutex = xSemaphoreCreateMutex();
+	xMutex = xSemaphoreCreateBinary();
 		
   /* Start the console task */
 	vStartConsole(1, 19200);
@@ -44,7 +44,7 @@ int main (void)
 	/* Start Tasks */
 	vStartLcd(3, xQueue);	
 	vStartLightsTask(2, xQueue, xMutex);
-	vStartButtonsTask(1, xQueue, xMutex);
+	//vStartButtonsTask(1, xQueue, xMutex);
 
 	/* Start the FreeRTOS Scheduler ... after this we're pre-emptive multitasking ...
 

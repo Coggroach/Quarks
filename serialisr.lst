@@ -459,12 +459,10 @@ ARM Macro Assembler    Page 7
 ARM Macro Assembler    Page 8 
 
 
-Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\s
-erialisr.d -o.\serialisr.o -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I"E:
-\Program Files (x86)\Keil_v5\ARM\RV31\INC" -I"E:\Program Files (x86)\Keil_v5\AR
-M\CMSIS\Include" -I"E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips" --predefine
-="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 521" --list=.\serialisr.ls
-t serialISR.s
+Command Line: --debug --xref --apcs=interwork --depend=.\serialisr.d -o.\serial
+isr.o -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -IC:\Keil\ARM\RV31\INC -IC
+:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Philips --predefine="__EVAL SETA 1" 
+--list=.\serialisr.lst serialISR.s
 
 
 
@@ -501,9 +499,9 @@ Symbol: pxCurrentTCB
       At line 58 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro
 .inc
    Uses
-      At line 114 in macro portSAVE_CONTEXT
+      At line 114 in macro  TEXT
       at line 77 in file serialISR.s
-      At line 65 in macro portRESTORE_CONTEXT
+      At line 65 in macro ˇˇåê
       at line 87 in file serialISR.s
 
 ulCriticalNesting 00000000
@@ -513,9 +511,9 @@ Symbol: ulCriticalNesting
       At line 57 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro
 .inc
    Uses
-      At line 110 in macro portSAVE_CONTEXT
+      At line 110 in macro  TEXT
       at line 77 in file serialISR.s
-      At line 69 in macro portRESTORE_CONTEXT
+      At line 69 in macro ˇˇåê
       at line 87 in file serialISR.s
 
 vUART_ISRHandler 00000000
@@ -527,4 +525,4 @@ Symbol: vUART_ISRHandler
       At line 80 in file serialISR.s
 Comment: vUART_ISRHandler used once
 3 symbols
-339 symbols in table
+338 symbols in table

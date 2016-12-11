@@ -130,7 +130,8 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 	while(1)
 	{
 		/* Get command from Q */
-	  xQueueReceive(xCmdQ, &m, portMAX_DELAY);			
+	  xQueueReceive(xCmdQ, &m, portMAX_DELAY);
+		printf("Received Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);		
 		
 		/* Check what needs Updating */
 		if((m.mode & UpdateData) == UpdateData) 		
@@ -151,13 +152,14 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 		
 		
 		/* Block on a mutex */
-		xSemaphoreTake(xMutex, portMAX_DELAY);
+		//xSemaphoreTake(xMutex, portMAX_DELAY);
 		
 		/* Update Lights */
+		printf("Setting LEDs: %i, %i, %i\r\n", d, p0, p1);
 		setLEDs(d, p0, p1);
 		
 		/* Give mutex back */
-		xSemaphoreGive(xMutex);
+		//xSemaphoreGive(xMutex);
 		
 		/* Update Last Message */
 		lastMessage.data = d;

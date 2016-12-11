@@ -3,6 +3,8 @@
 #include "lcd_hw.h"
 #include "Graphics.h"
 #include "font5x7.h"
+#include <stdio.h>
+#include "Verbose.h"
 
 
 static Colour foregroundColor = White;
@@ -742,25 +744,21 @@ void drawSlider(Slider s, ColourPalette c, int m)
 {
 	Rect rect = s.rect;
 	int x = s.mode == 0 ? rect.x : rect.y;
-	int w = s.mode == 0 ? rect.width : rect.height;
+	int w = s.mode == 0 ? rect.width : rect.height;		
 	
-	int r1_size = s.sPos;
-	int r3_size = w - r1_size - s.sSize;
-	int r2 = x + s.sSize;
-	int r3 = r2 + s.sSize;
+	int r2_size = w - s.sPos;
+	int r2 = x + s.sPos;	
 	Colour off = (m == 0) ? c.one : c.two;
 	
 	if(s.mode == Horizontal) 	
 	{
-		fillRect(rect.x, rect.y, r1_size, rect.height, off);
-		fillRect(r2, rect.y, s.sSize, rect.height, c.four);	
-		fillRect(r3, rect.y, r3_size, rect.height, off);	
+		fillRect(rect.x, rect.y, s.sPos, rect.height, c.four);
+		fillRect(r2, rect.y, r2_size, rect.height, off);
 	}
 	else
 	{
-		fillRect(rect.x, rect.y, rect.width, r1_size, off);
-		fillRect(rect.x, r2, rect.width, s.sSize, c.four);	
-		fillRect(rect.x, r3, rect.width, r3_size, off);
+		fillRect(rect.x, rect.y, rect.width, s.sPos, c.four);
+		fillRect(rect.x, r2, rect.width, r2_size, off);
 	}	
 }
 
@@ -773,8 +771,25 @@ Colour getBrightnessColour(unsigned char b)
 	return r;	
 }
 
+Colour getBrightnessColourFromState(ButtonState s)
+{
+	switch(s)
+	{
+		case On:
+			return Yellow;		
+		case Dim:
+			return Orange;
+		default:
+		case Off:
+			return Black;
+	}
+}
+
 void drawLight(Light l)
 {
-	Colour c = getBrightnessColour(l.brightness);
+	Colour c = getBrightnessColourFromState(l.state);
+	#if(GraphicsVerbose == 1)
+		printf("Drawing Light: %i, %i\r\n", l.id, c);
+	#endif
 	fillRect(l.rect.x, l.rect.y, l.rect.width, l.rect.height, c);
 }

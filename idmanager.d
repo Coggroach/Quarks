@@ -5,10 +5,10 @@
 .\idmanager.o: Control\Colour.h
 .\idmanager.o: Control\LCDGraphics.h
 .\idmanager.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\idmanager.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\idmanager.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\idmanager.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\idmanager.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\idmanager.o: .\FreeRTOSConfig.h
-.\idmanager.o: E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips\lpc24xx.h
+.\idmanager.o: C:\Keil\ARM\Inc\Philips\lpc24xx.h
 .\idmanager.o: ..\FreeRTOS\Source\include\projdefs.h
 .\idmanager.o: ..\FreeRTOS\Source\include\portable.h
 .\idmanager.o: ..\FreeRTOS\Source\include\deprecated_definitions.h

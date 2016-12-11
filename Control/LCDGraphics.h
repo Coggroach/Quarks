@@ -33,6 +33,7 @@ void drawSliderPointer(Slider* b);
 void drawLights(LedMessage m);
 
 void handleButton(Button *b);
+void handlePreset(Button *b);
 void handleSlider(Slider *s, Point p);
 void handleInterface(LedInterface *i, int id, xQueueHandle xQueue, Point p);
 int isComponentTouched(unsigned int x, unsigned int y);
@@ -47,7 +48,7 @@ unsigned short getLedMode(int id);
 unsigned short getLedData(void);
 unsigned short getLightData(void);
 void setLightData(unsigned short d);
-unsigned short getLedPulse0(void);
-unsigned short getLedPulse1(void);
+unsigned int getLedPulse0(void);
+unsigned int getLedPulse1(void);
 
 #endif

@@ -44,8 +44,7 @@ typedef struct Slider
 {
 	unsigned short id;
 	Rect rect;
-	unsigned short sPos;
-	unsigned short sSize;
+	unsigned int sPos;
 	SlideMode mode;
 	
 } Slider;
