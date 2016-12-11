@@ -10,7 +10,7 @@ ColourPalette palette;
 void drawLedScreen(void)
 {
 	int i = 0, j = 0;
-	fillScreen(MuddyWhite);
+	fillScreen(LightGray);
 	
 	for(j = 0; j < NumberOfInterfaces; j++) 
 	{		
@@ -36,6 +36,36 @@ void drawButtonPointer(Button* b)
 void drawSliderPointer(Slider* s)
 {
 	drawSlider(*s, palette, s->id % 2);
+}
+
+void drawButtons(void)
+{
+	int i = 0, j = 0;
+	for(j = 0; j < NumberOfInterfaces; j++) 
+	{		
+		i = j % 2;
+		drawButton(screen.interfaces[j].buttons[0], palette, i);
+		drawButton(screen.interfaces[j].buttons[1], palette, i);
+	}
+}
+
+void drawSliders(void)
+{
+	int i = 0, j = 0;
+	for(j = 0; j < NumberOfInterfaces; j++) 
+	{		
+		i = j % 2;
+		drawSlider(screen.interfaces[j].slider, palette, i);
+	}
+}
+
+void drawPresets(void)
+{
+	int i = 0;
+	for(i = 0; i < NumberOfButtons; i++) 
+	{
+		drawButton(screen.buttons[i], palette, (i % 2));
+	}
 }
 
 void drawLights(LedMessage m)
@@ -189,17 +219,27 @@ unsigned int getLedPulse0(void)
 {
 	Slider s = screen.interfaces[0].slider;
 	int i = s.mode == Horizontal ? s.rect.width : s.rect.height;
-	return s.sPos; //256 * s.sPos	/ i;
+	return 256 * s.sPos	/ i;
 }
 
 unsigned int getLedPulse1(void)
 {
 	Slider s = screen.interfaces[1].slider;
 	int i = s.mode == Horizontal ? s.rect.width : s.rect.height;
-	return s.sPos; //256 * s.sPos	/ i;
+	return 256 * s.sPos	/ i;
 }
 
 /* Data Accessors */
+int getPresetButtonId(Button* b)
+{
+	int j;
+	for(j = 0; j < NumberOfButtons; j++) 
+	{
+		if(screen.buttons[j].id == b->id)
+			return j;
+	}
+	return ~(0x0);
+}
 
 Slider* getSlider(int id)
 {
@@ -240,12 +280,81 @@ Point getPoint(unsigned int x, unsigned int y)
 
 /* Event Handling Methods */
 
+void masterPreset(Button* b)
+{	
+	screen.interfaces[0].buttons[0].state = b->state;
+	screen.interfaces[0].buttons[1].state = b->state;
+	screen.interfaces[1].buttons[0].state = b->state;
+	screen.interfaces[1].buttons[1].state = b->state;
+	
+	screen.interfaces[0].lights[0].state = b->state;
+	screen.interfaces[0].lights[1].state = b->state;
+	screen.interfaces[1].lights[0].state = b->state;
+	screen.interfaces[1].lights[1].state = b->state;
+}
+
+void interfaceDimPreset(Button* b, int i)
+{
+	ButtonState s = b->state == On ? Dim : b->state;
+	screen.interfaces[i].buttons[0].state = s;
+	screen.interfaces[i].buttons[1].state = s;
+	
+	screen.interfaces[i].lights[0].state = s;
+	screen.interfaces[i].lights[1].state = s;
+}
+
+void sliderHalfPreset(void)
+{
+	Slider* s;
+
+	s	= &screen.interfaces[0].slider;	
+	s->sPos = s->mode == Horizontal ? s->rect.width/2 : s->rect.height/2;
+	
+	s = &screen.interfaces[1].slider;	
+	s->sPos = s->mode == Horizontal ? s->rect.width/2 : s->rect.height/2;	
+}
+
+void disableOtherPresets(Button* b)
+{
+	int i;
+	for(i = 0; i < NumberOfButtons; i++) 
+	{
+		if(screen.buttons[i].id == b->id)
+			continue;
+		screen.buttons[i].state = Off;
+	}
+}
+
 void handlePreset(Button* b)
 {
+	int p = getPresetButtonId(b);
+	
 	if(b->state == Off)
 		b->state = On;
 	else if(b->state == On)
-		b->state = Off;
+		b->state = Off;	
+	
+	switch(p)
+	{
+		case 0:
+			masterPreset(b);	
+			break;
+		case 2:
+			interfaceDimPreset(b, 1);
+		case 1:
+			interfaceDimPreset(b, 0);
+			break;
+		case 3:
+			interfaceDimPreset(b, 1);
+			break;
+		case 4:
+			sliderHalfPreset();
+			break;
+		default:
+			break;
+	}
+	disableOtherPresets(b);
+	drawPresets();
 }
 
 void handleButton(Button* b)

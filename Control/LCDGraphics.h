@@ -31,6 +31,9 @@ void drawButtonPointer(Button* b);
 void drawSliderPointer(Slider* b);
 
 void drawLights(LedMessage m);
+void drawButtons(void);
+void drawSliders(void);
+void drawPresets(void);
 
 void handleButton(Button *b);
 void handlePreset(Button *b);
@@ -40,6 +43,7 @@ int isComponentTouched(unsigned int x, unsigned int y);
 void setupLedScreen(void);
 Slider* getSlider(int id);
 Button* getButton(int id);
+int getPresetButtonId(Button* b);
 Point getPoint(unsigned int x, unsigned int y);
 
 unsigned char isPresetButton(int id);

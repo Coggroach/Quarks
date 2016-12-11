@@ -129,6 +129,10 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 				/* Handle Preset */
 				handlePreset(button);
 				drawButtonPointer(button);
+				m = getLedMessage(ComponentTouchedId);
+				drawLights(m);
+				drawButtons();
+				drawSliders();
 				//drawLedScreen();				
 				//vTaskDelayUntil(&xLastWakeTime, 25);
 				continue;
@@ -160,7 +164,7 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 				handleSlider(slider, getPoint(xPos, yPos));
 				drawSliderPointer(slider);
 				
-				//printf("Slider: %i, %i\r\n", slider->id, slider->sPos);
+				printf("Slider: %i, %i\r\n", slider->id, slider->sPos);
 				
 				/* Handle and Draw Lights */
 				m = getLedMessage(ComponentTouchedId);

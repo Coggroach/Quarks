@@ -34,9 +34,8 @@ int main (void)
 	prvSetupHardware();
 	
 	/* Create a FreeRTOS Queue to send commands from the Producer task to the consumer task. */
-	xQueue = xQueueCreate(MaxLEDControlEvents, sizeof(LedMessage));
-	
-	xMutex = xSemaphoreCreateBinary();
+	xQueue = xQueueCreate(MaxLEDControlEvents, sizeof(LedMessage));	
+	//xMutex = xSemaphoreCreateMutexStatic(&xMutexBuffer);
 		
   /* Start the console task */
 	vStartConsole(1, 19200);
