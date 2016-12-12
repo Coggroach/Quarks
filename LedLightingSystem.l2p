@@ -26,8 +26,6 @@
 ".\lcdcontrol.o"
 ".\idmanager.o"
 ".\boardbuttons.o"
-
---feedback ".\LedLightingSystem.fed" --feedback_image=none
 --strict --scatter ".\LedLightingSystem.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

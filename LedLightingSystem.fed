@@ -1,0 +1,89 @@
+;#<FEEDBACK># ARM Linker, 5.03 [Build 76]: Last Updated: Mon Dec 12 11:12:21 2016
+;VERSION 0.2
+;FILE boardbuttons.o
+;FILE button.o
+vBUTTON_ISRHandler <= USED 0
+xSetupButton <= USED 0
+;FILE console.o
+;FILE graphics.o
+drawCircle <= USED 0
+drawCircleStruct <= USED 0
+drawLine <= USED 0
+drawPointStruct <= USED 0
+drawRect <= USED 0
+drawRectStruct <= USED 0
+fontColor <= USED 0
+getBrightnessColour <= USED 0
+movePenPoint <= USED 0
+picture <= USED 0
+pictureBegin <= USED 0
+pictureData <= USED 0
+pictureEnd <= USED 0
+putChar <= USED 0
+putString <= USED 0
+;FILE heap_3.o
+;FILE idmanager.o
+;FILE lcd_grph.o
+lcd_circle <= USED 0
+lcd_drawRect <= USED 0
+lcd_fillRect <= USED 0
+lcd_fillScreen <= USED 0
+lcd_fontColor <= USED 0
+lcd_line <= USED 0
+lcd_movePen <= USED 0
+lcd_picture <= USED 0
+lcd_pictureBegin <= USED 0
+lcd_pictureData <= USED 0
+lcd_pictureEnd <= USED 0
+lcd_point <= USED 0
+lcd_putChar <= USED 0
+lcd_putString <= USED 0
+lcd_setWindow <= USED 0
+;FILE lcd_hw.o
+readFromDisp <= USED 0
+;FILE lcdcontrol.o
+;FILE lcdgraphics.o
+getLightData <= USED 0
+setLightData <= USED 0
+;FILE ledlights.o
+;FILE list.o
+;FILE main.o
+;FILE port.o
+vPortEndScheduler <= USED 0
+;FILE queue.o
+uxQueueMessagesWaiting <= USED 0
+uxQueueMessagesWaitingFromISR <= USED 0
+uxQueueSpacesAvailable <= USED 0
+vQueueDelete <= USED 0
+xQueueIsQueueEmptyFromISR <= USED 0
+xQueueIsQueueFullFromISR <= USED 0
+xQueuePeekFromISR <= USED 0
+;FILE retarget.o
+fgetc <= USED 0
+;FILE sensors.o
+getButtons <= USED 0
+vStartSensors <= USED 0
+;FILE serial.o
+;FILE shapes.o
+doesCircleContainPoint <= USED 0
+;FILE tasks.o
+pcTaskGetName <= USED 0
+ulTaskNotifyTake <= USED 0
+uxTaskGetNumberOfTasks <= USED 0
+uxTaskPriorityGet <= USED 0
+uxTaskPriorityGetFromISR <= USED 0
+uxTaskResetEventItemValue <= USED 0
+vTaskDelete <= USED 0
+vTaskEndScheduler <= USED 0
+vTaskNotifyGiveFromISR <= USED 0
+vTaskPlaceOnUnorderedEventList <= USED 0
+vTaskPrioritySet <= USED 0
+vTaskResume <= USED 0
+vTaskSuspend <= USED 0
+xTaskGenericNotify <= USED 0
+xTaskGenericNotifyFromISR <= USED 0
+xTaskGetTickCountFromISR <= USED 0
+xTaskNotifyStateClear <= USED 0
+xTaskNotifyWait <= USED 0
+xTaskRemoveFromUnorderedEventList <= USED 0
+xTaskResumeFromISR <= USED 0

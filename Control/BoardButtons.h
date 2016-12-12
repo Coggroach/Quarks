@@ -2,8 +2,7 @@
 #define BOARDBUTTONS_H
 
 #include "queue.h"
-#include "semphr.h"
 
-void vStartButtonsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xSemaphoreHandle xMutex);
+void vStartButtonsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xQueueHandle xMutex);
 
 #endif

@@ -5,6 +5,7 @@
 #include "Messages.h"
 #include "BoardButtons.h"
 #include "I2C.h"
+#include "Verbose.h"
 
 
 /* FreeRTOS definitions */
@@ -14,16 +15,16 @@
 static void vButtonsTask( void *pvParameters );
 
 static xQueueHandle xCmdQ;
-static xSemaphoreHandle xMutex;
+static xQueueHandle xMutex;
 
-void vStartButtonsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xSemaphoreHandle xSemphr)
+void vStartButtonsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xQueueHandle xSemphr)
 {
     /* We're going to pass a pointer to the new task's parameter block. We don't want the
        parameter block (in this case just a queue handle) that we point to to disappear
        during the lifetime of the task. Declaring the parameter block as static
        achieves this. */    
   xCmdQ = xQueue;
-	xMutex = xSemphr;
+	xMutex = xSemphr;	
 
 	/* Spawn the console task . */
 	xTaskCreate( vButtonsTask, "Buttons", buttonsTaskSTACK_SIZE, &xCmdQ, uxPriority, ( xTaskHandle * ) NULL );
@@ -97,12 +98,13 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 	unsigned char changedState;
 	unsigned int i;	
 	unsigned char mask;
+	int mutex;
 	LedMessage m;
 	
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 	
-	printf("Starting Buttons Task ...\r\n");
+	printf("[Starting]: Buttons Task ...\r\n");
 
 	lastButtonState = 0;
 	
@@ -112,18 +114,33 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 	/* Button Poll */
 	while( 1 )
 	{
-		/* Block on a Mutex */
-		xSemaphoreTake(xMutex, portMAX_DELAY);
+		/* Block on a Mutex */		
+		xQueueReceive(xMutex, &mutex, portMAX_DELAY);
+		
+		/* Verbose */
+		#if(xMutexVerbose == 1)			
+			printf("Received Mutex: %i\r\n", mutex);			
+		#endif
 		
 		/* Read buttons */
 		buttonState = getBoardButtons();
 				
 		/* Give mutex back */
-		xSemaphoreGive(xMutex);
+		xQueueSendToFront(xMutex, &mutex, portMAX_DELAY);
+		
+		/* Verbose */
+		#if(xMutexVerbose == 1)
+			printf("Sent Mutex: %i\r\n", mutex);			
+		#endif
 		
 		changedState = buttonState ^ lastButtonState;
 		if (buttonState != lastButtonState)
 		{
+			/* Verbose */
+			#if(BoardButtonsVerbose == 1)
+				printf("Board Button Changed State: %i\r\n", buttonState);
+			#endif
+			
 			/* Reset Mode and Data */
 			m.data = m.mode = 0;
 			
@@ -136,12 +153,15 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 				{
 					if(buttonState & mask)
 					{
-						printf("Button %u is %s\r\n", i, (buttonState & mask) ? "on" : "off");
 						m.mode |= mask;
 						m.data |= 1 << i*2;;
+
 					}
 				}
 			}			
+			#if(BoardButtonsVerbose == 1)
+				printf("Button: %i, %i\r\n", m.mode, m.data);
+			#endif
 			xQueueSendToFront(xCmdQ, &m, portMAX_DELAY);
 			lastButtonState = buttonState;
 		}

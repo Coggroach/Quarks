@@ -12,11 +12,11 @@
 /* The Consumer task. */
 static void vConsumerTask( void *pvParameters );
 static xQueueHandle xCmdQ;
+static xQueueHandle xMutex;
 
 static LedMessage lastMessage;
-static xSemaphoreHandle xMutex;
 
-void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xSemaphoreHandle xSemphr)
+void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xQueueHandle xSemphr)
 {
     /* We're going to pass a pointer to the new task's parameter block. We don't want the
        parameter block (in this case just a queue handle) that we point to to disappear
@@ -114,12 +114,13 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 {
 	portTickType xLastWakeTime;	
 	LedMessage m;
+	int mutex;
 	unsigned char d, p0, p1;
 	
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 	
-	printf("Starting LEDs task ...\r\n");
+	printf("[Starting]: LEDLights task ...\r\n");
 	
 	/* initial xLastWakeTime for accurate polling interval */
 	xLastWakeTime = xTaskGetTickCount();
@@ -131,7 +132,9 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 	{
 		/* Get command from Q */
 	  xQueueReceive(xCmdQ, &m, portMAX_DELAY);
-		printf("Received Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);		
+		#if(LEDLightsVerbose == 1)
+			printf("Received Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);		
+		#endif
 		
 		/* Check what needs Updating */
 		if((m.mode & UpdateData) == UpdateData) 		
@@ -150,16 +153,27 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 		p0 = ((m.mode & UpdatePulse0) == UpdatePulse0) ? m.pulse0 : lastMessage.pulse0;
 		p1 = ((m.mode & UpdatePulse1) == UpdatePulse1) ? m.pulse1 : lastMessage.pulse1;
 		
-		
 		/* Block on a mutex */
-		//xSemaphoreTake(xMutex, portMAX_DELAY);
+		xQueueReceive(xMutex, &mutex, portMAX_DELAY);		
 		
-		/* Update Lights */
-		printf("Setting LEDs: %i, %i, %i\r\n", d, p0, p1);
+		/* Verbose */
+		#if(LEDLightsVerbose == 1)
+			printf("Setting LEDs: %i, %i, %i\r\n", d, p0, p1);			
+		#endif		
+		#if(xMutexVerbose == 1)
+			printf("Received Mutex: %i\r\n", mutex);
+		#endif
+		
+		/* Update Lights */		
 		setLEDs(d, p0, p1);
 		
 		/* Give mutex back */
-		//xSemaphoreGive(xMutex);
+		xQueueSendToFront(xMutex, &mutex, portMAX_DELAY);
+		
+		/* Verbose */
+		#if(xMutexVerbose == 1)
+			printf("Sent Mutex: %i\r\n", mutex);
+		#endif	
 		
 		/* Update Last Message */
 		lastMessage.data = d;

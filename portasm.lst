@@ -803,7 +803,7 @@ Symbol: pxCurrentTCB
    Uses
       At line 65 in macro ÿÿortYieldBONTEXT
       at line 85 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portASM.s
-      At line 114 in macro z2TEXT
+      At line 114 in macro z¦TEXT
       at line 112 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portASM.
 s
 
@@ -816,7 +816,7 @@ Symbol: ulCriticalNesting
    Uses
       At line 69 in macro ÿÿortYieldBONTEXT
       at line 85 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portASM.s
-      At line 110 in macro z2TEXT
+      At line 110 in macro z¦TEXT
       at line 112 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portASM.
 s
 

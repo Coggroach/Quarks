@@ -499,7 +499,7 @@ Symbol: pxCurrentTCB
       At line 58 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro
 .inc
    Uses
-      At line 114 in macro  TEXT
+      At line 114 in macro 0TEXT
       at line 77 in file serialISR.s
       At line 65 in macro ˇˇåê
       at line 87 in file serialISR.s
@@ -511,7 +511,7 @@ Symbol: ulCriticalNesting
       At line 57 in file ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro
 .inc
    Uses
-      At line 110 in macro  TEXT
+      At line 110 in macro 0TEXT
       at line 77 in file serialISR.s
       At line 69 in macro ˇˇåê
       at line 87 in file serialISR.s

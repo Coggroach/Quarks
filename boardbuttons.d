@@ -15,5 +15,5 @@
 .\boardbuttons.o: Control\Messages.h
 .\boardbuttons.o: Control\BoardButtons.h
 .\boardbuttons.o: ..\FreeRTOS\Source\include\queue.h
-.\boardbuttons.o: ..\FreeRTOS\Source\include\semphr.h
 .\boardbuttons.o: Control\I2C.h
+.\boardbuttons.o: Control\Verbose.h

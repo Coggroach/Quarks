@@ -1,361 +1,0 @@
-Dependencies for Project 'LedLightingSystem', Target 'Internal Flash': (DO NOT MODIFY !)
-F (.\LPC2400.s)(0x584D3EE1)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\lpc2400.lst --xref -o .\lpc2400.o --depend .\lpc2400.d)
-F (.\main.c)(0x584D5370)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\main.o --omf_browse .\main.crf --depend .\main.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\Quarks\console.h)(0x584D3EE1)
-I (U:\Quarks\serial.h)(0x584D3EE2)
-I (U:\Quarks\LCD\lcd_hw.h)(0x584D3EE1)
-I (U:\Quarks\Control\Graphics.h)(0x584D3EE1)
-I (U:\Quarks\Control\Components.h)(0x584D628C)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-I (U:\Quarks\Control\LCDControl.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\Quarks\Control\LEDLights.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\semphr.h)(0x584AA318)
-I (U:\Quarks\Control\LCDGraphics.h)(0x584D62A6)
-I (U:\Quarks\Control\Messages.h)(0x584D3EE1)
-I (U:\Quarks\Control\BoardButtons.h)(0x584D3EE1)
-I (U:\Quarks\Control\I2C.h)(0x584D3EE1)
-F (.\console.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\console.o --omf_browse .\console.crf --depend .\console.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\Quarks\serial.h)(0x584D3EE2)
-I (U:\Quarks\console.h)(0x584D3EE1)
-F (.\Retarget.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\retarget.o --omf_browse .\retarget.crf --depend .\retarget.d)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\rt_misc.h)(0x51C80BA4)
-I (U:\Quarks\serial.h)(0x584D3EE2)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\Quarks\console.h)(0x584D3EE1)
-F (.\serial.c)(0x584D3EE2)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\serial.o --omf_browse .\serial.crf --depend .\serial.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\Quarks\serial.h)(0x584D3EE2)
-F (.\console.h)(0x584D3EE1)()
-F (.\serial.h)(0x584D3EE2)()
-F (.\serialISR.s)(0x584D3EE2)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\serialisr.lst --xref -o .\serialisr.o --depend .\serialisr.d)
-F (.\lcdISR.s)(0x584D3EE1)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\lcdisr.lst --xref -o .\lcdisr.o --depend .\lcdisr.d)
-F (.\button.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\button.o --omf_browse .\button.crf --depend .\button.d)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\Quarks\button.h)(0x584D3EE1)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
-F (.\button.h)(0x584D3EE1)()
-F (.\buttonISR.s)(0x584D3EE1)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\buttonisr.lst --xref -o .\buttonisr.o --depend .\buttonisr.d)
-F (.\sensors.c)(0x584D3EE2)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\sensors.o --omf_browse .\sensors.crf --depend .\sensors.d)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
-I (U:\Quarks\sensors.h)(0x584D3EE2)
-F (.\sensors.h)(0x584D3EE2)()
-F (..\FreeRTOS\Source\list.c)(0x584AA316)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\list.o --omf_browse .\list.crf --depend .\list.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-F (..\FreeRTOS\Source\queue.c)(0x584AA317)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\queue.o --omf_browse .\queue.crf --depend .\queue.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-F (..\FreeRTOS\Source\tasks.c)(0x584AA317)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\tasks.o --omf_browse .\tasks.crf --depend .\tasks.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\timers.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\StackMacros.h)(0x584AA318)
-F (..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\port.c)(0x584AA319)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\port.o --omf_browse .\port.crf --depend .\port.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-F (..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portASM.s)(0x584AA319)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\portasm.lst --xref -o .\portasm.o --depend .\portasm.d)
-F (..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)()
-F (..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.inc)(0x584AA319)()
-F (..\FreeRTOS\Source\portable\MemMang\heap_3.c)(0x584AA318)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\heap_3.o --omf_browse .\heap_3.crf --depend .\heap_3.d)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-F (.\FreeRTOSConfig.h)(0x584D3EE1)()
-F (.\LCD\font5x7.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\font5x7.o --omf_browse .\font5x7.crf --depend .\font5x7.d)
-I (C:\Keil\ARM\Inc\Philips\LPC24xx.H)(0x51C80D9C)
-I (U:\Quarks\LCD\font_macro.h)(0x584D3EE1)
-F (.\LCD\lcd_grph.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\lcd_grph.o --omf_browse .\lcd_grph.crf --depend .\lcd_grph.d)
-I (C:\Keil\ARM\Inc\Philips\LPC24xx.H)(0x51C80D9C)
-I (U:\Quarks\LCD\general.h)(0x584D3EE1)
-I (U:\Quarks\LCD\lcd_hw.h)(0x584D3EE1)
-I (U:\Quarks\LCD\lcd_grph.h)(0x584D3EE1)
-I (U:\Quarks\LCD\font5x7.h)(0x584D3EE1)
-F (.\LCD\lcd_hw.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\lcd_hw.o --omf_browse .\lcd_hw.crf --depend .\lcd_hw.d)
-I (C:\Keil\ARM\Inc\Philips\LPC24xx.H)(0x51C80D9C)
-I (U:\Quarks\LCD\lcd_hw.h)(0x584D3EE1)
-I (U:\Quarks\LCD\general.h)(0x584D3EE1)
-I (U:\Quarks\LCD\config.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-F (.\LCD\config.h)(0x584D3EE1)()
-F (.\LCD\font_macro.h)(0x584D3EE1)()
-F (.\LCD\font5x7.h)(0x584D3EE1)()
-F (.\LCD\general.h)(0x584D3EE1)()
-F (.\LCD\lcd_grph.h)(0x584D3EE1)()
-F (.\LCD\lcd_hw.h)(0x584D3EE1)()
-F (.\Control\Colour.h)(0x584D4CF5)()
-F (.\Control\Components.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\components.o --omf_browse .\components.crf --depend .\components.d)
-I (U:\Quarks\Control\Components.h)(0x584D628C)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-F (.\Control\Components.h)(0x584D628C)()
-F (.\Control\Graphics.c)(0x584D6141)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\graphics.o --omf_browse .\graphics.crf --depend .\graphics.d)
-I (C:\Keil\ARM\Inc\Philips\LPC24xx.H)(0x51C80D9C)
-I (U:\Quarks\LCD\general.h)(0x584D3EE1)
-I (U:\Quarks\LCD\lcd_hw.h)(0x584D3EE1)
-I (U:\Quarks\Control\Graphics.h)(0x584D3EE1)
-I (U:\Quarks\Control\Components.h)(0x584D628C)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-I (U:\Quarks\LCD\font5x7.h)(0x584D3EE1)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (U:\Quarks\Control\Verbose.h)(0x584D5476)
-F (.\Control\Graphics.h)(0x584D3EE1)()
-F (.\Control\Shapes.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\shapes.o --omf_browse .\shapes.crf --depend .\shapes.d)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-F (.\Control\Shapes.h)(0x584D3EE1)()
-F (.\Control\LEDLights.c)(0x584D5916)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\ledlights.o --omf_browse .\ledlights.crf --depend .\ledlights.d)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (U:\Quarks\Control\LEDLights.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\semphr.h)(0x584AA318)
-I (U:\Quarks\Control\Messages.h)(0x584D3EE1)
-I (U:\Quarks\Control\I2C.h)(0x584D3EE1)
-F (.\Control\LEDLights.h)(0x584D3EE1)()
-F (.\Control\LCDGraphics.c)(0x584D63E4)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\lcdgraphics.o --omf_browse .\lcdgraphics.crf --depend .\lcdgraphics.d)
-I (U:\Quarks\Control\LCDGraphics.h)(0x584D62A6)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\Quarks\Control\Graphics.h)(0x584D3EE1)
-I (U:\Quarks\Control\Components.h)(0x584D628C)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\Quarks\Control\Messages.h)(0x584D3EE1)
-I (U:\Quarks\Control\IDManager.h)(0x584D3EE1)
-F (.\Control\LCDGraphics.h)(0x584D62A6)()
-F (.\Control\LCDControl.c)(0x584D64C8)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\lcdcontrol.o --omf_browse .\lcdcontrol.crf --depend .\lcdcontrol.d)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\Quarks\Control\LCDControl.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\Quarks\Control\LCDGraphics.h)(0x584D62A6)
-I (U:\Quarks\Control\Graphics.h)(0x584D3EE1)
-I (U:\Quarks\Control\Components.h)(0x584D628C)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-I (U:\Quarks\Control\Messages.h)(0x584D3EE1)
-I (U:\Quarks\Control\IDManager.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\semphr.h)(0x584AA318)
-I (U:\Quarks\LCD\lcd_hw.h)(0x584D3EE1)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
-F (.\Control\IDManager.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\idmanager.o --omf_browse .\idmanager.crf --depend .\idmanager.d)
-I (U:\Quarks\Control\IDManager.h)(0x584D3EE1)
-I (U:\Quarks\Control\Components.h)(0x584D628C)
-I (U:\Quarks\Control\Shapes.h)(0x584D3EE1)
-I (U:\Quarks\Control\Colour.h)(0x584D4CF5)
-I (U:\Quarks\Control\LCDGraphics.h)(0x584D62A6)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\Quarks\Control\Graphics.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\Quarks\Control\Messages.h)(0x584D3EE1)
-F (.\Control\IDManager.h)(0x584D3EE1)()
-F (.\Control\LCDControl.h)(0x584D3EE1)()
-F (.\Control\Messages.h)(0x584D3EE1)()
-F (.\Control\BoardButtons.c)(0x584D3EE1)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-DARM7_LPC2468_TCD -o .\boardbuttons.o --omf_browse .\boardbuttons.crf --depend .\boardbuttons.d)
-I (U:\FreeRTOS\Source\include\FreeRTOS.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stddef.h)(0x51C80BA4)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (U:\Quarks\FreeRTOSConfig.h)(0x584D3EE1)
-I (C:\Keil\ARM\Inc\Philips\lpc24xx.h)(0x51C80D9C)
-I (U:\FreeRTOS\Source\include\projdefs.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\portable.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\deprecated_definitions.h)(0x584AA317)
-I (U:\FreeRTOS\Source\portable\TCD\ARM7_LPC2468\portmacro.h)(0x584AA319)
-I (U:\FreeRTOS\Source\include\mpu_wrappers.h)(0x584AA317)
-I (U:\FreeRTOS\Source\include\task.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\list.h)(0x584AA317)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
-I (U:\Quarks\Control\Messages.h)(0x584D3EE1)
-I (U:\Quarks\Control\BoardButtons.h)(0x584D3EE1)
-I (U:\FreeRTOS\Source\include\queue.h)(0x584AA318)
-I (U:\FreeRTOS\Source\include\semphr.h)(0x584AA318)
-I (U:\Quarks\Control\I2C.h)(0x584D3EE1)
-F (.\Control\BoardButtons.h)(0x584D3EE1)()
-F (.\Control\I2C.h)(0x584D3EE1)()

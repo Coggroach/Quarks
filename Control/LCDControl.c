@@ -48,7 +48,9 @@ static LedMessage getLedMessage(int id)
 		m.pulse1 = getLedPulse1();
 	
 	xQueueSendToBack(xCmdQ, &m, portMAX_DELAY);
-	printf("Sent Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);
+	#if(LCDControlVerbose == 1)
+		printf("Sent Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);
+	#endif
 	return m;
 }
 
@@ -67,7 +69,7 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 
-	printf("LEDControl task started ...\r\n");
+	printf("[Starting]: LEDControl task ...\r\n");
 	printf("===========================\r\n");
 
 	/* Initialise LCD display */
@@ -145,6 +147,24 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 			drawButtonPointer(button);
 			
 			/* Handle and Draw Lights */
+			 m = getLedMessage(ComponentTouchedId);
+			drawLights(m);
+		}
+		
+		/* Pressed Slider */
+		if(slider) {
+			if(!doesRectContainPoint(slider->rect, getPoint(xPos, yPos)))
+				continue;
+				
+			/* Handle and Draw Slider */
+			handleSlider(slider, getPoint(xPos, yPos));
+			drawSliderPointer(slider);
+				
+			#if(LCDControlVerboseExtra == 1)
+				printf("Slider: %i, %i\r\n", slider->id, slider->sPos);
+			#endif	
+			
+			/* Handle and Draw Lights */
 			m = getLedMessage(ComponentTouchedId);
 			drawLights(m);
 		}
@@ -164,8 +184,6 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 				handleSlider(slider, getPoint(xPos, yPos));
 				drawSliderPointer(slider);
 				
-				printf("Slider: %i, %i\r\n", slider->id, slider->sPos);
-				
 				/* Handle and Draw Lights */
 				m = getLedMessage(ComponentTouchedId);
 				drawLights(m);
@@ -176,7 +194,6 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 		}		
 
 		/* Up Event */
-		printf("===========================\r\n");
 	}
 }
 

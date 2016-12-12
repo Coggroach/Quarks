@@ -2,8 +2,7 @@
 #define LEDLIGHTS_H
 
 #include "queue.h"
-#include "semphr.h"
 
-void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xSemaphoreHandle xMutex);
+void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, xQueueHandle xMutex);
 
 #endif

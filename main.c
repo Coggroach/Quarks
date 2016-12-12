@@ -5,6 +5,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "console.h"
+#include "queue.h"
 #include "lcd_hw.h"
 #include "Control/Graphics.h"
 #include "Control/LCDControl.h"
@@ -15,6 +16,7 @@
 #include "Control/I2C.h"
 
 #define MaxLEDControlEvents 8
+#define MutexEvent 1
 
 extern void vLCD_ISREntry( void );
 
@@ -28,14 +30,17 @@ static void prvSetupHardware( void );
 int main (void)
 {
 	xQueueHandle xQueue;
-	xSemaphoreHandle xMutex;
+	xQueueHandle xMutex;
 	
 	/* Setup the hardware for use with the Keil demo board. */
 	prvSetupHardware();
 	
 	/* Create a FreeRTOS Queue to send commands from the Producer task to the consumer task. */
 	xQueue = xQueueCreate(MaxLEDControlEvents, sizeof(LedMessage));	
-	//xMutex = xSemaphoreCreateMutexStatic(&xMutexBuffer);
+	xMutex = xQueueCreate(MutexEvent, sizeof(int));
+	
+	/* Initialize Mutex */
+	xQueueSendToFront(xMutex, 0, portMAX_DELAY);
 		
   /* Start the console task */
 	vStartConsole(1, 19200);
@@ -43,7 +48,7 @@ int main (void)
 	/* Start Tasks */
 	vStartLcd(3, xQueue);	
 	vStartLightsTask(2, xQueue, xMutex);
-	//vStartButtonsTask(1, xQueue, xMutex);
+	vStartButtonsTask(1, xQueue, xMutex);
 
 	/* Start the FreeRTOS Scheduler ... after this we're pre-emptive multitasking ...
 

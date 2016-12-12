@@ -14,6 +14,5 @@
 .\ledlights.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
 .\ledlights.o: Control\LEDLights.h
 .\ledlights.o: ..\FreeRTOS\Source\include\queue.h
-.\ledlights.o: ..\FreeRTOS\Source\include\semphr.h
 .\ledlights.o: Control\Messages.h
 .\ledlights.o: Control\I2C.h
