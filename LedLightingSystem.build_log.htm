@@ -74,9 +74,14 @@ Control\LCDGraphics.c: 8 warnings, 0 errors
 compiling LCDControl.c...
 compiling IDManager.c...
 compiling BoardButtons.c...
+Control\BoardButtons.c(99): warning:  #177-D: variable "i" was declared but never referenced
+        unsigned int i; 
+Control\BoardButtons.c(100): warning:  #177-D: variable "mask" was declared but never referenced
+        unsigned char mask;
+Control\BoardButtons.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=30536 RO-data=820 RW-data=136 ZI-data=4199672  
-".\LedLightingSystem.axf" - 0 Error(s), 9 Warning(s).
+Program Size: Code=30584 RO-data=820 RW-data=136 ZI-data=4199672  
+".\LedLightingSystem.axf" - 0 Error(s), 11 Warning(s).
 
 *** Performing Cross-Module-Optimization:
 compiling Retarget.c...
@@ -106,7 +111,7 @@ Control\LCDGraphics.c(175): warning:  #188-D: enumerated type mixed with another
         screen.interfaces[1].lights[1].state = t;
 Control\LCDGraphics.c: 8 warnings, 0 errors
 linking...
-Program Size: Code=24068 RO-data=44 RW-data=132 ZI-data=4199676  
+Program Size: Code=24116 RO-data=44 RW-data=132 ZI-data=4199676  
 compiling Retarget.c...
 compiling queue.c...
 compiling tasks.c...
@@ -134,10 +139,10 @@ Control\LCDGraphics.c(175): warning:  #188-D: enumerated type mixed with another
         screen.interfaces[1].lights[1].state = t;
 Control\LCDGraphics.c: 8 warnings, 0 errors
 linking...
-Program Size: Code=24068 RO-data=44 RW-data=132 ZI-data=4199676  
+Program Size: Code=24116 RO-data=44 RW-data=132 ZI-data=4199676  
 ".\LedLightingSystem.axf" - 0 Error(s), 8 Warning(s).
 *** Completed Cross-Module-Optimization after 3 iteration(s).
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>

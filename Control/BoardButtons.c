@@ -139,31 +139,33 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 		{
 			/* Verbose */
 			#if(BoardButtonsVerbose == 1)
-				printf("[BoardButtons, ChangedState]: %i\r\n", buttonState);
+				printf("[BoardButtons, ChangedState]: %i\r\n", changedState);
 			#endif
 			
-			/* Reset Mode and Data */
-			m.data = m.mode = 0;
+			/* Logic for Message */
+			if((changedState & UpdateData) == UpdateData)
+				m.mode = UpdateData;
+			else if((changedState & UpdateData0) == UpdateData0)
+				m.mode = UpdateData0;
+			else if((changedState & UpdateData1) == UpdateData1)
+				m.mode = UpdateData1;
+			else if((changedState & UpdateData2) == UpdateData2)
+				m.mode = UpdateData2;
+			else if((changedState & UpdateData3) == UpdateData3)
+				m.mode = UpdateData3;			
 			
-			/* iterate over each of the 4 LS bits looking for changes in state */
-			for (i = 0; i <= 3; i++)
-			{
-				mask = 1 << i;
-				
-				if (changedState & mask)
-				{
-					if(buttonState & mask)
-					{
-						m.mode |= mask;
-						m.data |= 1 << i*2;
-
-					}
-				}
-			}			
+			m.data = 
+						((buttonState & UpdateData0)) 
+					| ((buttonState & UpdateData1) << 2)
+					| ((buttonState & UpdateData2) << 4)
+					| ((buttonState & UpdateData3) << 6);
+			
+			/* Send Message to Queue */
+			xQueueSendToBack(xCmdQ, &m, portMAX_DELAY);		
 			#if(BoardButtonsVerbose == 1)
-				printf(LedMessageSenderAction, "BoardButtons", ActionSent, m.mode, m.data, m.pulse0, m.pulse1);
+				printf(LedMessageSenderAction, "BoardButtons", ActionSent, m.mode, m.data, 0, 0);
 			#endif
-			xQueueSendToFront(xCmdQ, &m, portMAX_DELAY);
+			
 			lastButtonState = buttonState;
 		}
 		vTaskDelayUntil( &xLastWakeTime, 10);
