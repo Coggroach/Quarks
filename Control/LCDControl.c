@@ -8,6 +8,7 @@
 #include "lcd_hw.h"
 #include <stdio.h>
 #include <string.h>
+#include "Verbose.h"
 
 
 /* Maximum task stack size */
@@ -49,7 +50,7 @@ static LedMessage getLedMessage(int id)
 	
 	xQueueSendToBack(xCmdQ, &m, portMAX_DELAY);
 	#if(LCDControlVerbose == 1)
-		printf("Sent Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);
+		printf(LedMessageSenderAction, "LCDControl", ActionSent, m.mode, m.data, m.pulse0, m.pulse1);
 	#endif
 	return m;
 }
@@ -69,8 +70,8 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 
-	printf("[Starting]: LEDControl task ...\r\n");
-	printf("===========================\r\n");
+	printf(ConsoleLogActionDescription, ActionStart, "LCDControl");
+	printf(ConsoleUnderline);
 
 	/* Initialise LCD display */
 	/* NOTE: We needed to delay calling lcd_init() until here because it uses
@@ -132,11 +133,10 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 				handlePreset(button);
 				drawButtonPointer(button);
 				m = getLedMessage(ComponentTouchedId);
+				/* Re-draw Components */
 				drawLights(m);
 				drawButtons();
-				drawSliders();
-				//drawLedScreen();				
-				//vTaskDelayUntil(&xLastWakeTime, 25);
+				drawSliders();				
 				continue;
 			}
 			
@@ -151,7 +151,7 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 			drawLights(m);
 		}
 		
-		/* Pressed Slider */
+		/* Down Event */
 		if(slider) {
 			if(!doesRectContainPoint(slider->rect, getPoint(xPos, yPos)))
 				continue;
@@ -159,11 +159,7 @@ static portTASK_FUNCTION( vLcdTask, pvParameters )
 			/* Handle and Draw Slider */
 			handleSlider(slider, getPoint(xPos, yPos));
 			drawSliderPointer(slider);
-				
-			#if(LCDControlVerboseExtra == 1)
-				printf("Slider: %i, %i\r\n", slider->id, slider->sPos);
-			#endif	
-			
+							
 			/* Handle and Draw Lights */
 			m = getLedMessage(ComponentTouchedId);
 			drawLights(m);

@@ -278,7 +278,7 @@ Point getPoint(unsigned int x, unsigned int y)
 	return p;
 }
 
-/* Event Handling Methods */
+/* Preset Functions */
 
 void masterPreset(Button* b)
 {	
@@ -325,6 +325,8 @@ void disableOtherPresets(Button* b)
 	}
 }
 
+/* Event Handling Methods */
+
 void handlePreset(Button* b)
 {
 	int p = getPresetButtonId(b);
@@ -365,14 +367,6 @@ void handleButton(Button* b)
 		b->state = Dim;
 	else if(b->state == Dim)
 		b->state = Off;
-
-	/*if((b->state & Pressed) == Off)
-	{
-		b->state |= Pressed;
-		b->state |= ((b->state & On) == On) ? Off : On;		
-	}
-	else
-		b->state &= ~(Pressed); */
 }
 
 void handleSlider(Slider *s, Point point) 
@@ -415,6 +409,7 @@ int isComponentTouched(unsigned int x, unsigned int y)
 }
 
 /* Initialisation Methods */
+
 void setupLedScreen(void)
 {
 	int i;		

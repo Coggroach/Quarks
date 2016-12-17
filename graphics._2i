@@ -1,5 +1,6 @@
--c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I..\FreeRTOS\Source\include -I.\LCD
--I C:\Keil\ARM\RV31\INC
--I C:\Keil\ARM\CMSIS\Include
--I C:\Keil\ARM\Inc\Philips
--DARM7_LPC2468_TCD -o .\graphics.o --omf_browse .\graphics.crf --depend .\graphics.d --feedback ".\LedLightingSystem.fed" "Control\Graphics.c"
+-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I . -I ..\FreeRTOS\Source\portable\TCD\ARM7_LPC2468 -I ..\FreeRTOS\Source\include -I .\LCD
+-I"E:\Program Files (x86)\Keil_v5\ARM\RV31\INC"
+-I"E:\Program Files (x86)\Keil_v5\ARM\CMSIS\Include"
+-I"E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips"
+-D__UVISION_VERSION="521" -DARM7_LPC2468_TCD
+-o .\graphics.o --omf_browse .\graphics.crf --depend .\graphics.d --feedback ".\LedLightingSystem.fed" "Control\Graphics.c"

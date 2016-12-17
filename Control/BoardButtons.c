@@ -104,7 +104,8 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 	
-	printf("[Starting]: Buttons Task ...\r\n");
+	printf(ConsoleLogActionDescription, ActionStart, "BoardButtons");
+	printf(ConsoleUnderline);
 
 	lastButtonState = 0;
 	
@@ -119,7 +120,7 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 		
 		/* Verbose */
 		#if(xMutexVerbose == 1)			
-			printf("Received Mutex: %i\r\n", mutex);			
+			printf(MutexMessageAction, "BoardButtons", ActionReceived, mutex);			
 		#endif
 		
 		/* Read buttons */
@@ -130,7 +131,7 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 		
 		/* Verbose */
 		#if(xMutexVerbose == 1)
-			printf("Sent Mutex: %i\r\n", mutex);			
+			printf(MutexMessageAction, "BoardButtons", ActionSent, mutex);		
 		#endif
 		
 		changedState = buttonState ^ lastButtonState;
@@ -138,7 +139,7 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 		{
 			/* Verbose */
 			#if(BoardButtonsVerbose == 1)
-				printf("Board Button Changed State: %i\r\n", buttonState);
+				printf("[BoardButtons, ChangedState]: %i\r\n", buttonState);
 			#endif
 			
 			/* Reset Mode and Data */
@@ -154,13 +155,13 @@ static portTASK_FUNCTION( vButtonsTask, pvParameters )
 					if(buttonState & mask)
 					{
 						m.mode |= mask;
-						m.data |= 1 << i*2;;
+						m.data |= 1 << i*2;
 
 					}
 				}
 			}			
 			#if(BoardButtonsVerbose == 1)
-				printf("Button: %i, %i\r\n", m.mode, m.data);
+				printf(LedMessageSenderAction, "BoardButtons", ActionSent, m.mode, m.data, m.pulse0, m.pulse1);
 			#endif
 			xQueueSendToFront(xCmdQ, &m, portMAX_DELAY);
 			lastButtonState = buttonState;

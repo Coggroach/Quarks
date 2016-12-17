@@ -5,6 +5,7 @@
 #include "LEDLights.h"
 #include "Messages.h"
 #include "I2C.h"
+#include "Verbose.h"
 
 /* FreeRTOS definitions */
 #define consumerTaskSTACK_SIZE			( ( unsigned portBASE_TYPE ) 256 )
@@ -26,7 +27,7 @@ void vStartLightsTask( unsigned portBASE_TYPE uxPriority, xQueueHandle xQueue, x
 	xMutex = xSemphr;
 
 	/* Spawn the console task . */
-	xTaskCreate( vConsumerTask, "Consumer", consumerTaskSTACK_SIZE, &xCmdQ, uxPriority, ( xTaskHandle * ) NULL );
+	xTaskCreate( vConsumerTask, "LEDLights", consumerTaskSTACK_SIZE, &xCmdQ, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 void setLEDs(unsigned char data, unsigned char pwm0, unsigned char pwm1)
@@ -120,7 +121,8 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 	/* Just to stop compiler warnings. */
 	( void ) pvParameters;
 	
-	printf("[Starting]: LEDLights task ...\r\n");
+	printf(ConsoleLogActionDescription, ActionStart, "LEDLights");
+	printf(ConsoleUnderline);
 	
 	/* initial xLastWakeTime for accurate polling interval */
 	xLastWakeTime = xTaskGetTickCount();
@@ -133,7 +135,7 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 		/* Get command from Q */
 	  xQueueReceive(xCmdQ, &m, portMAX_DELAY);
 		#if(LEDLightsVerbose == 1)
-			printf("Received Message: %i, %i, %i, %i \r\n", m.mode, m.data, m.pulse0, m.pulse1);		
+			printf(LedMessageSenderAction, "LEDLights", ActionReceived, m.mode, m.data, m.pulse0, m.pulse1);		
 		#endif
 		
 		/* Check what needs Updating */
@@ -158,10 +160,10 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 		
 		/* Verbose */
 		#if(LEDLightsVerbose == 1)
-			printf("Setting LEDs: %i, %i, %i\r\n", d, p0, p1);			
+			printf("[LEDLights, Setting LEDs]: %i, %i, %i\r\n", d, p0, p1);			
 		#endif		
 		#if(xMutexVerbose == 1)
-			printf("Received Mutex: %i\r\n", mutex);
+			printf(MutexMessageAction, "LEDLights", ActionReceived, mutex);
 		#endif
 		
 		/* Update Lights */		
@@ -172,7 +174,7 @@ static portTASK_FUNCTION( vConsumerTask, pvParameters )
 		
 		/* Verbose */
 		#if(xMutexVerbose == 1)
-			printf("Sent Mutex: %i\r\n", mutex);
+			printf(MutexMessageAction, "LEDLights", ActionSent, mutex);
 		#endif	
 		
 		/* Update Last Message */

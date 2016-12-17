@@ -7,14 +7,17 @@
 #include "console.h"
 #include "queue.h"
 #include "lcd_hw.h"
-#include "Control/Graphics.h"
+
+/* Project includes */
 #include "Control/LCDControl.h"
 #include "Control/LEDLights.h"
-#include "Control/LCDGraphics.h"
-#include "Control/Messages.h"
 #include "Control/BoardButtons.h"
-#include "Control/I2C.h"
 
+#include "Control/Messages.h"
+#include "Control/I2C.h"
+#include "Control/Verbose.h"
+
+/* Local Main Defines */
 #define MaxLEDControlEvents 8
 #define MutexEvent 1
 
@@ -27,8 +30,12 @@ extern void vLCD_ISREntry( void );
  */
 static void prvSetupHardware( void );
 
+/*
+ * Main Function
+ */
 int main (void)
 {
+	/* Main Queue Handle and I2C Mutex Queue */
 	xQueueHandle xQueue;
 	xQueueHandle xMutex;
 	
@@ -44,6 +51,12 @@ int main (void)
 		
   /* Start the console task */
 	vStartConsole(1, 19200);
+	
+	#if(MainProgramVerbose == 1)
+		printf(ConsoleUnderline);
+		printf("[Starting]: Quarks Project...");
+		printf(ConsoleUnderline);
+	#endif	
 
 	/* Start Tasks */
 	vStartLcd(3, xQueue);	

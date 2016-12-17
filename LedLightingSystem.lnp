@@ -6,9 +6,6 @@
 ".\serial.o"
 ".\serialisr.o"
 ".\lcdisr.o"
-".\button.o"
-".\buttonisr.o"
-".\sensors.o"
 ".\list.o"
 ".\queue.o"
 ".\tasks.o"
@@ -26,7 +23,6 @@
 ".\lcdcontrol.o"
 ".\idmanager.o"
 ".\boardbuttons.o"
-
 --feedback ".\LedLightingSystem.fed" --feedback_image=none
 --strict --scatter ".\LedLightingSystem.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

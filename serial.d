@@ -1,10 +1,10 @@
 .\serial.o: serial.c
-.\serial.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\serial.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\serial.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\serial.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
-.\serial.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\serial.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\serial.o: E:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\serial.o: .\FreeRTOSConfig.h
-.\serial.o: C:\Keil\ARM\Inc\Philips\lpc24xx.h
+.\serial.o: E:\Program Files (x86)\Keil_v5\ARM\Inc\Philips\lpc24xx.h
 .\serial.o: ..\FreeRTOS\Source\include\projdefs.h
 .\serial.o: ..\FreeRTOS\Source\include\portable.h
 .\serial.o: ..\FreeRTOS\Source\include\deprecated_definitions.h
